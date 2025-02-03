@@ -1,3 +1,10 @@
-[gd_scene format=3 uid="uid://4dv71ojj0kbs"]
+[gd_scene load_steps=2 format=3 uid="uid://4dv71ojj0kbs"]
+
+[ext_resource type="Texture2D" uid="uid://nruqj7f68xch" path="res://Assets/ending_scene.png" id="1_s8mb7"]
 
 [node name="win_stage" type="Node2D"]
+
+[node name="EndingScene" type="Sprite2D" parent="."]
+position = Vector2(960, 544)
+scale = Vector2(1.24763, 1.24763)
+texture = ExtResource("1_s8mb7")

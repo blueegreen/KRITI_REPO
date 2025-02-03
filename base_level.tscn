@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://konrjl3thpn1" path="res://base_level.gd" id="1_3o4py"]
 [ext_resource type="PackedScene" uid="uid://c15ymp42pa487" path="res://Player/player.tscn" id="1_bo3yr"]
-[ext_resource type="Texture2D" uid="uid://chgfp3jju1hvg" path="res://icon.svg" id="1_eesb3"]
+[ext_resource type="Texture2D" uid="uid://dgvlffjgnj8d0" path="res://icon.svg" id="1_eesb3"]
 [ext_resource type="TileSet" uid="uid://d3lt3b2tp14a4" path="res://Assets/navigation_tiles.tres" id="2_2elnx"]
 [ext_resource type="PackedScene" uid="uid://bbkyej8b0mdk5" path="res://mole_manager.tscn" id="4_3o4py"]
 [ext_resource type="PackedScene" uid="uid://r4juqn0fmrji" path="res://mole_repulsor.tscn" id="5_ftfrf"]

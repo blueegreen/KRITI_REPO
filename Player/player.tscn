@@ -15,7 +15,7 @@ radius = 24.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_sweqy"]
 radius = 32.9848
 
-[sub_resource type="Shader" id="Shader_vtle1"]
+[sub_resource type="Shader" id="Shader_od3ui"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
@@ -38,7 +38,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_00tjw"]
 resource_local_to_scene = true
-shader = SubResource("Shader_vtle1")
+shader = SubResource("Shader_od3ui")
 shader_parameter/white = 1
 
 [sub_resource type="Animation" id="Animation_apopc"]
