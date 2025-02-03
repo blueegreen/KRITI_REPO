@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://17hc5w5showv"]
+
+[ext_resource type="Script" uid="uid://8sdafyd760ot" path="res://Bosses/Boss3/attacks/boss_3_jump_attack.gd" id="1_746bw"]
+[ext_resource type="Texture2D" uid="uid://dgc83qverxl5d" path="res://Assets/sprite_sheet_5.png" id="2_gq6vc"]
+[ext_resource type="AudioStream" uid="uid://7l8bwhaegtt4" path="res://Assets/Sfx/explosion.wav" id="3_gq6vc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2lad1"]
+size = Vector2(192, 128)
+
+[node name="boss_3_multiple_jump_attack" type="Node2D" node_paths=PackedStringArray("sfx")]
+script = ExtResource("1_746bw")
+jump_number = 3
+sfx = NodePath("AudioStreamPlayer2D")
+
+[node name="jump_wait" type="Timer" parent="."]
+one_shot = true
+
+[node name="damage_area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="damage_area"]
+shape = SubResource("RectangleShape2D_2lad1")
+
+[node name="shadow_sprite" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.388235, 0.388235, 0.388235, 0.603922)
+z_index = 1
+texture = ExtResource("2_gq6vc")
+region_enabled = true
+region_rect = Rect2(704, 0, 256, 128)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_gq6vc")
+volume_db = 6.726

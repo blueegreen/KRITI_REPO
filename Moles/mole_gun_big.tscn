@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=3 uid="uid://bfogix4toq025"]
+
+[ext_resource type="Script" uid="uid://cdu5aacq0jxxw" path="res://Gun.gd" id="1_u44wh"]
+[ext_resource type="Texture2D" uid="uid://bycfhkuiwy4ot" path="res://Assets/sprite_sheet_1.png" id="2_6d1ll"]
+[ext_resource type="PackedScene" uid="uid://b5samkkedhegk" path="res://Moles/bullet_big_mole.tscn" id="2_a8ahp"]
+[ext_resource type="PackedScene" uid="uid://brlop8lrea4q0" path="res://bullet_spawn_point.tscn" id="3_a8ahp"]
+[ext_resource type="AudioStream" uid="uid://e2xd0skfi05y" path="res://Assets/Sfx/flamethrower.wav" id="5_esil0"]
+
+[sub_resource type="Animation" id="Animation_jnmp6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("big_gun_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_iv51n"]
+resource_name = "base"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("big_gun_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_77mi4"]
+_data = {
+&"RESET": SubResource("Animation_jnmp6"),
+&"base": SubResource("Animation_iv51n")
+}
+
+[node name="mole_gun_big" type="Node2D" node_paths=PackedStringArray("gun_sprite", "gun_shoot_sfx")]
+script = ExtResource("1_u44wh")
+bullet = ExtResource("2_a8ahp")
+affiliation = "enemy"
+gun_sprite = NodePath("big_gun_sprite")
+gun_shoot_sfx = NodePath("AudioStreamPlayer2D")
+
+[node name="big_gun_sprite" type="Sprite2D" parent="."]
+position = Vector2(32, 0)
+scale = Vector2(0.735, 0.735)
+texture = ExtResource("2_6d1ll")
+hframes = 2
+region_enabled = true
+region_rect = Rect2(0, 640, 256, 128)
+
+[node name="bullet_spawn_point" parent="." instance=ExtResource("3_a8ahp")]
+position = Vector2(96, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_77mi4")
+}
+autoplay = "base"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_esil0")

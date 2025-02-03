@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://rmkviyv1qoy8"]
+
+[ext_resource type="Script" uid="uid://bsx00sfgph6pt" path="res://Bosses/Boss1/attacks/boss_1_whack_attack.gd" id="1_utcgq"]
+
+[node name="boss1_whack_attack" type="Node2D"]
+script = ExtResource("1_utcgq")

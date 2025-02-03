@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://brlop8lrea4q0"]
+
+[node name="bullet_spawn_point" type="Marker2D"]

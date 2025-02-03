@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1oy7n82b6iim"]
+
+[ext_resource type="Script" uid="uid://ooiy7fare7d5" path="res://hit_flash.gd" id="1_vmgco"]
+[ext_resource type="Material" uid="uid://c18gnf4ky8d7i" path="res://Assets/white_flash_mat.tres" id="2_8lw0c"]
+
+[node name="hit_flash" type="Node2D"]
+script = ExtResource("1_vmgco")
+flash_mat = ExtResource("2_8lw0c")

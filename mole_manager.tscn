@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbkyej8b0mdk5"]
+
+[ext_resource type="Script" uid="uid://4ebmmmtb8t7e" path="res://mole_manager.gd" id="1_s4u11"]
+
+[node name="mole_manager" type="Node2D"]
+script = ExtResource("1_s4u11")
+debug_cell_text_visible = false

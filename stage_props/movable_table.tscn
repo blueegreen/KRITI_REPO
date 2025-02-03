@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://di2q63518ot3t"]
+
+[ext_resource type="Texture2D" uid="uid://chb45xbdelook" path="res://Assets/sprite_sheet_7.png" id="1_aaoyl"]
+[ext_resource type="Script" uid="uid://6us0t2n6utxx" path="res://stage_props/movable_prop.gd" id="1_m45hh"]
+[ext_resource type="PackedScene" uid="uid://r4juqn0fmrji" path="res://mole_repulsor.tscn" id="2_mm8t5"]
+[ext_resource type="Script" uid="uid://d21hldp1ydihn" path="res://stage_props/prop_hitbox.gd" id="4_kqvki"]
+[ext_resource type="Texture2D" uid="uid://brpk5ba2kl1o6" path="res://Assets/circle_grad.png" id="5_lepwu"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_aaoyl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aaoyl"]
+size = Vector2(120, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m45hh"]
+size = Vector2(128, 71)
+
+[node name="movable_table" type="RigidBody2D"]
+script = ExtResource("1_m45hh")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+material = SubResource("CanvasItemMaterial_aaoyl")
+offset_left = -63.0
+offset_top = 19.0
+offset_right = 64.0
+offset_bottom = 68.0
+mouse_filter = 2
+color = Color(0.31, 0.31, 0.31, 0.729412)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 68)
+texture = ExtResource("1_aaoyl")
+region_enabled = true
+region_rect = Rect2(128, 448, 128, 64)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -28)
+texture = ExtResource("1_aaoyl")
+region_enabled = true
+region_rect = Rect2(128, 320, 128, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_aaoyl")
+
+[node name="mole_repulsor" parent="." instance=ExtResource("2_mm8t5")]
+min_repulsion_strength = 200
+radius = 96
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 6
+collision_mask = 0
+script = ExtResource("4_kqvki")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_m45hh")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -47)
+scale = Vector2(0.925741, 0.925741)
+energy = 0.4
+texture = ExtResource("5_lepwu")
+
+[connection signal="hit" from="hitbox" to="." method="move"]

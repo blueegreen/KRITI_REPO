@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvdow8bt5ksa7"]
+
+[ext_resource type="Script" uid="uid://bwsh531nng61j" path="res://Bosses/Boss1/mole_ball.gd" id="1_6eclj"]
+[ext_resource type="Texture2D" uid="uid://bukpfuwqn8g1x" path="res://Assets/sprite_sheet_3.png" id="1_xr6yg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6eclj"]
+radius = 64.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xr6yg"]
+radius = 96.0
+
+[node name="mole_ball" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_6eclj")
+
+[node name="small_sprite" type="Sprite2D" parent="."]
+position = Vector2(-9, 0)
+texture = ExtResource("1_xr6yg")
+region_enabled = true
+region_rect = Rect2(512, 128, 192, 192)
+
+[node name="big_sprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("1_xr6yg")
+region_enabled = true
+region_rect = Rect2(704, 64, 256, 256)
+
+[node name="small_collider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6eclj")
+
+[node name="big_collider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xr6yg")
+disabled = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

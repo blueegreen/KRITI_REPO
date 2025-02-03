@@ -1,0 +1,125 @@
+[gd_scene load_steps=24 format=3 uid="uid://dw4hf7mutvcnb"]
+
+[ext_resource type="Script" uid="uid://bjp5ltygpstor" path="res://Bosses/Boss1/boss_1.gd" id="1_a8swx"]
+[ext_resource type="Script" uid="uid://e1vpg2kp2be6" path="res://Bosses/boss_hitbox.gd" id="2_2nlvs"]
+[ext_resource type="PackedScene" uid="uid://pqhgmwrm4e0p" path="res://Bosses/Boss1/attacks/boss_1_gun_attack.tscn" id="2_3easo"]
+[ext_resource type="Texture2D" uid="uid://brpk5ba2kl1o6" path="res://Assets/circle_grad.png" id="2_mwtqu"]
+[ext_resource type="PackedScene" uid="uid://rmkviyv1qoy8" path="res://Bosses/Boss1/attacks/boss_1_whack_attack.tscn" id="3_2sv7s"]
+[ext_resource type="Texture2D" uid="uid://dpymgar0kwb12" path="res://Assets/boss_face_screen.png" id="3_v3eup"]
+[ext_resource type="Texture2D" uid="uid://codnyxm18s3el" path="res://Assets/sprite_sheet_2.png" id="3_wppuc"]
+[ext_resource type="PackedScene" uid="uid://c2tkgkkw6g883" path="res://Bosses/Boss1/boss_1_gun_hand.tscn" id="3_y66il"]
+[ext_resource type="PackedScene" uid="uid://c8nvifycfs0kq" path="res://Bosses/Boss1/attacks/boss_1_gun_attack_2.tscn" id="4_qh438"]
+[ext_resource type="PackedScene" uid="uid://bq4dhjaolq6xc" path="res://Bosses/Boss1/attacks/boss_1_jcb_drag_attack.tscn" id="5_geho7"]
+[ext_resource type="Texture2D" uid="uid://cb5edt45cefal" path="res://Assets/sprite_sheet_9.png" id="5_uv8b0"]
+[ext_resource type="PackedScene" uid="uid://d4auk61ub83fs" path="res://Bosses/Boss1/attacks/boss_1_whack_attack_2.tscn" id="6_2ua84"]
+[ext_resource type="PackedScene" uid="uid://bgxwd5q6k5811" path="res://Bosses/Boss1/boss_1_remote_hand.tscn" id="7_6csjc"]
+[ext_resource type="AudioStream" uid="uid://t7hgb22jjiak" path="res://Assets/Sfx/bosshit.wav" id="8_2sv7s"]
+[ext_resource type="PackedScene" uid="uid://b2wno2vvi6ug0" path="res://Bosses/Boss1/boss_1_whacka_mole_hand.tscn" id="8_06y17"]
+[ext_resource type="PackedScene" uid="uid://ck50jouc1b22d" path="res://Bosses/Boss1/boss_1_gun_hand_2.tscn" id="9_v3eup"]
+[ext_resource type="Texture2D" uid="uid://dohbe30b71p8b" path="res://Assets/grad.png" id="10_up3q7"]
+[ext_resource type="Script" uid="uid://ch2m4feyig562" path="res://Bosses/Boss1/boss_arms_animator.gd" id="11_uv8b0"]
+[ext_resource type="PackedScene" uid="uid://c1oy7n82b6iim" path="res://hit_flash.tscn" id="14_geho7"]
+[ext_resource type="Shader" uid="uid://b3jbwdaur6jju" path="res://Shaders/white_flash.gdshader" id="15_2ua84"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2nlvs"]
+size = Vector2(518, 440)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8o3yf"]
+resource_local_to_scene = true
+shader = ExtResource("15_2ua84")
+shader_parameter/white = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_up3q7"]
+size = Vector2(472, 406)
+
+[node name="boss_1" type="Node2D" node_paths=PackedStringArray("jcb_left_pos", "jcb_right_pos") groups=["enemy"]]
+script = ExtResource("1_a8swx")
+jcb_left_pos = NodePath("jcb_left_pos")
+jcb_right_pos = NodePath("jcb_right_pos")
+phase_1_attacks = Array[PackedScene]([ExtResource("2_3easo"), ExtResource("3_2sv7s"), ExtResource("4_qh438")])
+phase_2_attacks = Array[PackedScene]([ExtResource("2_3easo"), ExtResource("4_qh438"), ExtResource("5_geho7"), ExtResource("6_2ua84")])
+
+[node name="boss_hitbox" type="Area2D" parent="." node_paths=PackedStringArray("sfx", "target")]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("2_2nlvs")
+sfx = NodePath("AudioStreamPlayer2D")
+target = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boss_hitbox"]
+position = Vector2(8, -100)
+shape = SubResource("RectangleShape2D_2nlvs")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="boss_hitbox"]
+stream = ExtResource("8_2sv7s")
+
+[node name="BossFaceScreen" type="Sprite2D" parent="."]
+position = Vector2(7, -160)
+texture = ExtResource("3_v3eup")
+
+[node name="face_sprite" type="Sprite2D" parent="."]
+position = Vector2(35, -103)
+scale = Vector2(1.20126, 1.20126)
+texture = ExtResource("5_uv8b0")
+vframes = 2
+region_enabled = true
+region_rect = Rect2(0, 0, 320, 384)
+
+[node name="boss_shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+position = Vector2(0, 128)
+scale = Vector2(2.75, 1)
+texture = ExtResource("2_mwtqu")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-2.84217e-14, -128)
+scale = Vector2(1.35503, 1.16573)
+energy = 0.6
+texture = ExtResource("10_up3q7")
+
+[node name="body_sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -128)
+texture = ExtResource("3_wppuc")
+region_enabled = true
+region_rect = Rect2(0, 0, 768, 576)
+
+[node name="hit_flash" parent="body_sprite" instance=ExtResource("14_geho7")]
+flash_mat = SubResource("ShaderMaterial_8o3yf")
+
+[node name="Boss1_GunHand" parent="." instance=ExtResource("3_y66il")]
+z_index = 1
+position = Vector2(394, -21)
+rotation = -0.261799
+
+[node name="Boss1_GunHand_2" parent="." instance=ExtResource("9_v3eup")]
+z_index = 1
+position = Vector2(-411, -20)
+rotation = -2.87979
+
+[node name="Boss1_RemoteHand" parent="." instance=ExtResource("7_6csjc")]
+z_index = 1
+position = Vector2(448, -224)
+
+[node name="Boss1_WhackaMoleHand" parent="." instance=ExtResource("8_06y17")]
+z_index = 1
+position = Vector2(-512, -224)
+rotation = 0.523598
+
+[node name="jcb_left_pos" type="Marker2D" parent="."]
+position = Vector2(-726, -413)
+
+[node name="jcb_right_pos" type="Marker2D" parent="."]
+position = Vector2(795, -379)
+
+[node name="boss_arms_animator" type="Node" parent="." node_paths=PackedStringArray("arms")]
+script = ExtResource("11_uv8b0")
+arms = [NodePath("../Boss1_GunHand"), NodePath("../Boss1_GunHand_2"), NodePath("../Boss1_RemoteHand"), NodePath("../Boss1_WhackaMoleHand")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -105)
+shape = SubResource("RectangleShape2D_up3q7")
+
+[connection signal="damage_taken" from="boss_hitbox" to="body_sprite/hit_flash" method="trigger_shader"]

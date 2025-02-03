@@ -1,0 +1,19 @@
+[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://d3lt3b2tp14a4"]
+
+[ext_resource type="Texture2D" uid="uid://dgvlffjgnj8d0" path="res://icon.svg" id="1_mt0f5"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_mt0f5"]
+vertices = PackedVector2Array(31.0469, -31.0469, 32.7422, 31.6094, -31.6094, 31.6094, -31.6094, -31.6094)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-31.6105, -31.6105, 31.0461, -31.0461, 32.7395, 31.6105, -31.6105, 31.6105)])
+agent_radius = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3o4py"]
+texture = ExtResource("1_mt0f5")
+0:0/size_in_atlas = Vector2i(4, 4)
+0:0/0 = 0
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_mt0f5")
+
+[resource]
+navigation_layer_0/layers = 1
+sources/1 = SubResource("TileSetAtlasSource_3o4py")

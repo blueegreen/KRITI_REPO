@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://c0evues3rqfv0"]
+
+[ext_resource type="Script" uid="uid://6us0t2n6utxx" path="res://stage_props/movable_prop.gd" id="1_rp25d"]
+[ext_resource type="Texture2D" uid="uid://chb45xbdelook" path="res://Assets/sprite_sheet_7.png" id="2_8iq4w"]
+[ext_resource type="PackedScene" uid="uid://r4juqn0fmrji" path="res://mole_repulsor.tscn" id="3_5fdw1"]
+[ext_resource type="Script" uid="uid://d21hldp1ydihn" path="res://stage_props/prop_hitbox.gd" id="4_n06ry"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_el43f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wwioc"]
+size = Vector2(120, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bpyb5"]
+size = Vector2(128, 71)
+
+[node name="movable_table_3" type="RigidBody2D"]
+script = ExtResource("1_rp25d")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+material = SubResource("CanvasItemMaterial_el43f")
+offset_left = -64.0
+offset_top = 19.0
+offset_right = 64.0
+offset_bottom = 68.0
+mouse_filter = 2
+color = Color(0.31, 0.31, 0.31, 0.729412)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 68)
+texture = ExtResource("2_8iq4w")
+region_enabled = true
+region_rect = Rect2(128, 448, 128, 64)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 7)
+texture = ExtResource("2_8iq4w")
+region_enabled = true
+region_rect = Rect2(384, 320, 128, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_wwioc")
+
+[node name="mole_repulsor" parent="." instance=ExtResource("3_5fdw1")]
+min_repulsion_strength = 200
+radius = 96
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 6
+collision_mask = 0
+script = ExtResource("4_n06ry")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_bpyb5")
+
+[connection signal="hit" from="hitbox" to="." method="move"]

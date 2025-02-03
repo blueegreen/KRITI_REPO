@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxqfqolj3ldfv"]
+
+[ext_resource type="Shader" uid="uid://ksk6vlc7bgd3" path="res://Bosses/Boss3/attacks/boss_3_laser_attack.tres" id="1_8clqe"]
+[ext_resource type="Texture2D" uid="uid://boh2vf26chk8v" path="res://Assets/laser_small_texture.png" id="2_vpd1f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qaoj3"]
+shader = ExtResource("1_8clqe")
+shader_parameter/laser_texture = ExtResource("2_vpd1f")
+
+[node name="boss_3_eye_laser" type="Line2D"]
+visible = false
+material = SubResource("ShaderMaterial_qaoj3")
+points = PackedVector2Array(0, 0, 256, 0)
+texture_mode = 1

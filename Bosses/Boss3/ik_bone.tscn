@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfyh4h0jdonh6"]
+
+[ext_resource type="Script" uid="uid://cawn57dfxrrsa" path="res://Bosses/Boss3/ik_bone.gd" id="1_xbvne"]
+[ext_resource type="Texture2D" uid="uid://dgc83qverxl5d" path="res://Assets/sprite_sheet_5.png" id="2_fyxms"]
+
+[sub_resource type="Curve" id="Curve_xbvne"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.48613), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_xbvne"]
+
+[node name="IK_BONE" type="Node2D" node_paths=PackedStringArray("head", "tail", "sprite")]
+script = ExtResource("1_xbvne")
+head = NodePath("HEAD")
+tail = NodePath("TAIL")
+sprite = NodePath("Node2D")
+
+[node name="HEAD" type="Marker2D" parent="."]
+
+[node name="TAIL" type="Marker2D" parent="."]
+position = Vector2(128, 0)
+
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+z_index = 1
+y_sort_enabled = true
+points = PackedVector2Array(0, 0, 128, 0)
+width = 40.0
+width_curve = SubResource("Curve_xbvne")
+default_color = Color(0.366595, 0.366595, 0.366595, 1)
+gradient = SubResource("Gradient_xbvne")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="SpriteSheet5" type="Sprite2D" parent="Node2D"]
+position = Vector2(64, 0)
+rotation = 1.57079
+texture = ExtResource("2_fyxms")
+region_enabled = true
+region_rect = Rect2(448, 64, 128, 192)

@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://53yccsjc5pej"]
+
+[ext_resource type="Script" uid="uid://1qhaa4p2c36o" path="res://Moles/base_mole.gd" id="1_saq7f"]
+[ext_resource type="PackedScene" uid="uid://dlmbbb2oobjr1" path="res://Moles/mole_1_sprite.tscn" id="2_jcgf1"]
+[ext_resource type="Script" uid="uid://bvekfoovpowdi" path="res://Moles/mole_1_behaviour.gd" id="2_p7o6h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_047jk"]
+radius = 24.0
+
+[node name="mole_1" type="Area2D" node_paths=PackedStringArray("skin") groups=["mole"]]
+y_sort_enabled = true
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_saq7f")
+skin = NodePath("mole_1_sprite")
+behaviour = ExtResource("2_p7o6h")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 64.0
+path_postprocessing = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_047jk")
+
+[node name="mole_1_sprite" parent="." instance=ExtResource("2_jcgf1")]

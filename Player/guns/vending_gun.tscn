@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0hwyvme8tboj"]
+
+[ext_resource type="Texture2D" uid="uid://bycfhkuiwy4ot" path="res://Assets/sprite_sheet_1.png" id="1_33r8k"]
+[ext_resource type="Script" uid="uid://cdu5aacq0jxxw" path="res://Gun.gd" id="1_i3a37"]
+[ext_resource type="PackedScene" uid="uid://brlop8lrea4q0" path="res://bullet_spawn_point.tscn" id="2_6oxhe"]
+[ext_resource type="PackedScene" uid="uid://bhsoe8epj6xxb" path="res://Player/guns/vending_bullet.tscn" id="2_e8nry"]
+
+[node name="vending_gun" type="Node2D" node_paths=PackedStringArray("gun_sprite")]
+script = ExtResource("1_i3a37")
+bullet = ExtResource("2_e8nry")
+gun_sprite = NodePath("vending_gun_sprite")
+
+[node name="vending_gun_sprite" type="Sprite2D" parent="."]
+position = Vector2(31, 0)
+scale = Vector2(0.77, 0.77)
+texture = ExtResource("1_33r8k")
+region_enabled = true
+region_rect = Rect2(256, 512, 128, 128)
+
+[node name="bullet_spawn_point" parent="." instance=ExtResource("2_6oxhe")]
+position = Vector2(80, 0)

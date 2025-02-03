@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://lg8xl4e01k5y"]
+
+[ext_resource type="Shader" uid="uid://ksk6vlc7bgd3" path="res://Bosses/Boss3/attacks/boss_3_laser_attack.tres" id="1_qe2pk"]
+[ext_resource type="Texture2D" uid="uid://cpobsv3llxcxw" path="res://Assets/lightning_texture.png" id="2_x48i1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_df8qj"]
+shader = ExtResource("1_qe2pk")
+shader_parameter/laser_texture = ExtResource("2_x48i1")
+
+[node name="lightning_attack" type="Line2D"]
+top_level = true
+material = SubResource("ShaderMaterial_df8qj")
+points = PackedVector2Array(0, 0, 96, -32, 160, 32, 256, 0)
+width = 80.0
+texture_mode = 2

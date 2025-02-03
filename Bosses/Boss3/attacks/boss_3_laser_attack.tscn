@@ -1,0 +1,153 @@
+[gd_scene load_steps=21 format=3 uid="uid://bq4bp1ohcodg1"]
+
+[ext_resource type="Script" uid="uid://p1ks8u2yk7t4" path="res://Bosses/Boss3/attacks/boss_3_laser_attack.gd" id="1_d3o23"]
+[ext_resource type="Texture2D" uid="uid://bukpfuwqn8g1x" path="res://Assets/sprite_sheet_3.png" id="2_offva"]
+[ext_resource type="Shader" uid="uid://ksk6vlc7bgd3" path="res://Bosses/Boss3/attacks/boss_3_laser_attack.tres" id="3_gpc3k"]
+[ext_resource type="Texture2D" uid="uid://cinjyd1hxfovx" path="res://Assets/laser_big_texture.png" id="3_lqrdo"]
+[ext_resource type="Texture2D" uid="uid://boh2vf26chk8v" path="res://Assets/laser_small_texture.png" id="3_ohu85"]
+[ext_resource type="Texture2D" uid="uid://qlimfs03j6r8" path="res://Assets/circle_solid.png" id="5_wim7g"]
+[ext_resource type="AudioStream" uid="uid://cjgvydjl400m4" path="res://Assets/Sfx/orbitalstrike.wav" id="7_3c1vs"]
+[ext_resource type="AudioStream" uid="uid://n2u2ii1hrcsi" path="res://Assets/Sfx/warning.wav" id="8_3c1vs"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wim7g"]
+shader = ExtResource("3_gpc3k")
+shader_parameter/laser_texture = ExtResource("3_lqrdo")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d3o23"]
+radius = 50.0899
+
+[sub_resource type="Animation" id="Animation_lqrdo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("target:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_offva"]
+resource_name = "default"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("target:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gpc3k"]
+_data = {
+&"RESET": SubResource("Animation_lqrdo"),
+&"default": SubResource("Animation_offva")
+}
+
+[sub_resource type="Gradient" id="Gradient_ohu85"]
+offsets = PackedFloat32Array(0, 0.606557, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0.263, 0.732, 0.569, 0.104775, 2.88785e-07, 0.580223, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pumed"]
+gradient = SubResource("Gradient_ohu85")
+
+[sub_resource type="Curve" id="Curve_3c1vs"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.268542), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_oa0ot"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_x6ew0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_gh0wi"]
+curve_x = SubResource("Curve_3c1vs")
+curve_y = SubResource("Curve_oa0ot")
+curve_z = SubResource("Curve_x6ew0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lqfch"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 50.0
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 168.62
+initial_velocity_max = 1000.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 0.8
+scale_curve = SubResource("CurveXYZTexture_gh0wi")
+color = Color(2, 2, 2, 1)
+color_ramp = SubResource("GradientTexture1D_pumed")
+
+[node name="boss_3_laser_attack" type="Node2D" node_paths=PackedStringArray("sfx", "warning_sfx")]
+z_index = 2
+y_sort_enabled = true
+script = ExtResource("1_d3o23")
+sfx = NodePath("AudioStreamPlayer2D")
+warning_sfx = NodePath("AudioStreamPlayer2D2")
+
+[node name="target" type="Sprite2D" parent="."]
+z_index = -2
+texture = ExtResource("2_offva")
+region_enabled = true
+region_rect = Rect2(512, 448, 256, 256)
+
+[node name="warning_laser" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, -3904)
+default_color = Color(1, 0.52196, 0.491344, 1)
+texture = ExtResource("3_ohu85")
+texture_mode = 2
+
+[node name="attack_laser" type="Line2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_wim7g")
+position = Vector2(0, -96)
+points = PackedVector2Array(0, 32, 0, -3872)
+width = 200.0
+texture_mode = 2
+begin_cap_mode = 2
+
+[node name="damage_area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="damage_area"]
+shape = SubResource("CircleShape2D_d3o23")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_gpc3k")
+}
+autoplay = "default"
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 40
+speed_scale = 1.3
+texture = ExtResource("5_wim7g")
+process_material = SubResource("ParticleProcessMaterial_lqfch")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_3c1vs")
+volume_db = 3.688
+pitch_scale = 0.64
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_3c1vs")

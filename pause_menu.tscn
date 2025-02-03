@@ -1,0 +1,115 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5f0dcsh6kjc2"]
+
+[ext_resource type="Shader" uid="uid://clog8hga7rney" path="res://pause_menu.gdshader" id="1_2nc7s"]
+[ext_resource type="Script" path="res://pause_menu.gd" id="1_hdmo1"]
+[ext_resource type="Theme" uid="uid://bejgicu8okcwk" path="res://Assets/Theme & Styleboxes/pause_menu_theme.tres" id="1_p81d2"]
+[ext_resource type="Texture2D" uid="uid://bbc1c11vfxg4h" path="res://Assets/Sprites/Picture1.png" id="5_2nc7s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d3xb4"]
+shader = ExtResource("1_2nc7s")
+shader_parameter/resolution = Vector2(320, 180)
+shader_parameter/scan_line_amount = 1.0
+shader_parameter/warp_amount = 0.1
+shader_parameter/noise_amount = 0.03
+shader_parameter/interference_amount = 0.2
+shader_parameter/grille_amount = 0.1
+shader_parameter/grille_size = 1.0
+shader_parameter/vignette_amount = 0.6
+shader_parameter/vignette_intensity = 0.0
+shader_parameter/aberation_amount = 0.5
+shader_parameter/roll_line_amount = 0.3
+shader_parameter/roll_speed = 1.0
+shader_parameter/scan_line_strength = -8.0
+shader_parameter/pixel_strength = -2.0
+
+[node name="Pause_Menu" type="Control" node_paths=PackedStringArray("buttons")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_p81d2")
+script = ExtResource("1_hdmo1")
+buttons = [NodePath("Resume"), NodePath("Settings"), NodePath("Quit")]
+
+[node name="tv_shader" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_d3xb4")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -912.0
+offset_top = -516.0
+offset_right = 1541.0
+offset_bottom = 792.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.76, 0.76)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1048.0
+offset_top = -916.0
+offset_right = 24.0
+offset_bottom = 242.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_2nc7s")
+region_rect = Rect2(0, 0, 4400, 2475)
+
+[node name="Resume" type="Button" parent="."]
+layout_mode = 2
+offset_left = -440.0
+offset_top = -152.0
+offset_right = -318.0
+offset_bottom = -130.0
+scale = Vector2(4.571, 4.571)
+text = "               Resume"
+
+[node name="Settings" type="Button" parent="."]
+layout_mode = 2
+offset_left = -440.0
+offset_top = -51.436
+offset_right = -318.0
+offset_bottom = -29.436
+scale = Vector2(4.571, 4.571)
+text = "              SettINGS"
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 2
+offset_left = -440.0
+offset_top = 49.128
+offset_right = -318.0
+offset_bottom = 71.128
+scale = Vector2(4.571, 4.571)
+text = "Quit"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -448.0
+offset_top = -148.0
+offset_right = -326.0
+offset_bottom = -71.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4.5711, 4.5711)
+theme_override_constants/separation = 0
+
+[connection signal="pressed" from="Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://c35pw16kfqmo8"]
+
+[ext_resource type="Texture2D" uid="uid://chb45xbdelook" path="res://Assets/sprite_sheet_7.png" id="1_lod18"]
+[ext_resource type="Texture2D" uid="uid://brpk5ba2kl1o6" path="res://Assets/circle_grad.png" id="2_22xlt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_th2h8"]
+atlas = ExtResource("1_lod18")
+region = Rect2(256, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q31du"]
+atlas = ExtResource("1_lod18")
+region = Rect2(320, 256, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tn8w0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_th2h8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q31du")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="firefly" type="AnimatedSprite2D"]
+z_index = -1
+sprite_frames = SubResource("SpriteFrames_tn8w0")
+autoplay = "default"
+frame_progress = 0.788766
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(1.06464, 1.06464)
+energy = 0.1
+texture = ExtResource("2_22xlt")

@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c18gnf4ky8d7i"]
+
+[ext_resource type="Shader" uid="uid://b3jbwdaur6jju" path="res://Shaders/white_flash.gdshader" id="1_sigyn"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_sigyn")
+shader_parameter/white = 1

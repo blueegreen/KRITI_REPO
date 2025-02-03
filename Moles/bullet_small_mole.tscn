@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://c3870cfybicp3"]
+
+[ext_resource type="Script" uid="uid://dk8gcanaca7qh" path="res://bullet.gd" id="1_uvahp"]
+[ext_resource type="Texture2D" uid="uid://bycfhkuiwy4ot" path="res://Assets/sprite_sheet_1.png" id="2_553kh"]
+[ext_resource type="Texture2D" uid="uid://brpk5ba2kl1o6" path="res://Assets/circle_grad.png" id="3_553kh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bo41q"]
+radius = 13.0
+
+[sub_resource type="Animation" id="Animation_hse4g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_734mu"]
+resource_name = "base"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e2eks"]
+_data = {
+&"RESET": SubResource("Animation_hse4g"),
+&"base": SubResource("Animation_734mu")
+}
+
+[node name="bullet_small_mole" type="Area2D"]
+collision_layer = 0
+collision_mask = 15
+script = ExtResource("1_uvahp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_553kh")
+region_enabled = true
+region_rect = Rect2(384, 768, 128, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bo41q")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_e2eks")
+}
+autoplay = "base"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.220067, 0.220067)
+energy = 0.5
+texture = ExtResource("3_553kh")

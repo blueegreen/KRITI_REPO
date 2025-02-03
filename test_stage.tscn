@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://c28hubeugyp8t"]
+
+[ext_resource type="PackedScene" uid="uid://ca8pwyr2plhv0" path="res://Bosses/Boss2/boss_2.tscn" id="1_qbgws"]
+[ext_resource type="PackedScene" uid="uid://cycp1scovhlqw" path="res://Bosses/Boss2/tesla_coil.tscn" id="2_m1ymf"]
+[ext_resource type="PackedScene" uid="uid://ckg0wu87q2gf" path="res://Bosses/Boss2/boss_2_fans.tscn" id="3_lawq8"]
+[ext_resource type="PackedScene" uid="uid://caufd8t1e0g16" path="res://environment_tileset.tscn" id="4_mlsmt"]
+[ext_resource type="PackedScene" uid="uid://bfks0nc2dx4t8" path="res://Bosses/Boss2/attacks/boss_2_electric_pulse_attack.tscn" id="5_m1ymf"]
+
+[sub_resource type="Curve2D" id="Curve2D_ijgqj"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 640, 0, 0, 0, 0, 0, 640, 352, 0, 0, 0, 0, -640, 352, 0, 0, 0, 0, -640, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 6
+
+[node name="test_stage" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(0, -416)
+curve = SubResource("Curve2D_ijgqj")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+
+[node name="boss_2" parent="." node_paths=PackedStringArray("fans", "antennae", "path_follow_node") instance=ExtResource("1_qbgws")]
+position = Vector2(0, -416)
+fans = [NodePath("../boss_2_fans")]
+antennae = NodePath("../tesla_coil")
+path_follow_node = NodePath("../Path2D/PathFollow2D")
+
+[node name="tesla_coil" parent="." instance=ExtResource("2_m1ymf")]
+position = Vector2(-160, 128)
+
+[node name="boss_2_fans" parent="." instance=ExtResource("3_lawq8")]
+position = Vector2(349, 128)
+
+[node name="TileMapLayer" parent="." instance=ExtResource("4_mlsmt")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.58, 0.58)
+
+[node name="boss_2_electric_pulse_attack" parent="." instance=ExtResource("5_m1ymf")]

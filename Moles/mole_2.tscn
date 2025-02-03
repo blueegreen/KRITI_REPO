@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://baajhom2lj25u"]
+
+[ext_resource type="Script" uid="uid://1qhaa4p2c36o" path="res://Moles/base_mole.gd" id="1_fylqr"]
+[ext_resource type="PackedScene" uid="uid://ceud6unst5xwi" path="res://Moles/mole_2_sprite.tscn" id="1_ko5s6"]
+[ext_resource type="Script" uid="uid://xvs7bh6ncsgd" path="res://Moles/mole_2_behaviour.gd" id="2_sk78h"]
+[ext_resource type="PackedScene" uid="uid://dc256rw7fglme" path="res://Moles/mole_gun_small.tscn" id="3_nqe7m"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fylqr"]
+radius = 29.0
+height = 96.0
+
+[node name="mole_2" type="Area2D" node_paths=PackedStringArray("skin", "gun") groups=["mole"]]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_fylqr")
+skin = NodePath("mole_2_sprite")
+behaviour = ExtResource("2_sk78h")
+gun = NodePath("small_mole_gun")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 64.0
+path_postprocessing = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_fylqr")
+
+[node name="mole_2_sprite" parent="." instance=ExtResource("1_ko5s6")]
+
+[node name="small_mole_gun" parent="." instance=ExtResource("3_nqe7m")]
+position = Vector2(2, 2)

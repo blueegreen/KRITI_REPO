@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://c4253n40kg6cn"]
+
+[ext_resource type="Script" uid="uid://bulr5q5p0e30k" path="res://Bosses/Boss2/laser_gun.gd" id="1_6w6r2"]
+[ext_resource type="Texture2D" uid="uid://codnyxm18s3el" path="res://Assets/sprite_sheet_2.png" id="1_clsik"]
+[ext_resource type="PackedScene" uid="uid://qsfmeas7iuax" path="res://Bosses/Boss2/laser.tscn" id="2_av43h"]
+[ext_resource type="PackedScene" uid="uid://bmg8tbxwjcto6" path="res://Bosses/Boss2/warning_laser.tscn" id="3_u6w5j"]
+[ext_resource type="Texture2D" uid="uid://dohbe30b71p8b" path="res://Assets/grad.png" id="5_rf6nk"]
+[ext_resource type="AudioStream" uid="uid://bji7u0bu34x03" path="res://Assets/Sfx/followinglaser.wav" id="6_pf1f3"]
+
+[node name="laser_gun" type="Node2D" node_paths=PackedStringArray("sfx", "laser_spawn_marker", "gun_sprite", "gun_sprite_flipped")]
+script = ExtResource("1_6w6r2")
+sfx = NodePath("AudioStreamPlayer2D")
+laser_spawn_marker = NodePath("laser_spawn_point")
+laser = ExtResource("2_av43h")
+warning_laser_scene = ExtResource("3_u6w5j")
+gun_sprite = NodePath("gun_sprite")
+gun_sprite_flipped = NodePath("gun_sprite_flipped")
+
+[node name="gun_sprite" type="Sprite2D" parent="."]
+z_index = 3
+position = Vector2(32, 19)
+texture = ExtResource("1_clsik")
+region_enabled = true
+region_rect = Rect2(384, 576, 320, 256)
+
+[node name="gun_sprite_flipped" type="Sprite2D" parent="."]
+z_index = 3
+position = Vector2(32, -32)
+texture = ExtResource("1_clsik")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(384, 576, 320, 256)
+
+[node name="laser_spawn_point" type="Marker2D" parent="."]
+position = Vector2(192, 0)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(160, 0)
+scale = Vector2(1.36487, 1.17419)
+color = Color(1, 0.9, 0.9, 1)
+energy = 0.35
+texture = ExtResource("5_rf6nk")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_pf1f3")
+volume_db = -0.225

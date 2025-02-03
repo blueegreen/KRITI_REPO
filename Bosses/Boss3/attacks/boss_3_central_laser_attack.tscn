@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbplxe4tkgh2d"]
+
+[ext_resource type="Script" uid="uid://b5bqhknpm7mot" path="res://Bosses/Boss3/attacks/boss_3_central_laser_attack.gd" id="1_2ip8o"]
+[ext_resource type="Script" uid="uid://bulr5q5p0e30k" path="res://Bosses/Boss2/laser_gun.gd" id="1_plhw8"]
+[ext_resource type="PackedScene" uid="uid://qsfmeas7iuax" path="res://Bosses/Boss2/laser.tscn" id="3_ifxfq"]
+[ext_resource type="PackedScene" uid="uid://bmg8tbxwjcto6" path="res://Bosses/Boss2/warning_laser.tscn" id="4_32kpr"]
+[ext_resource type="AudioStream" uid="uid://bji7u0bu34x03" path="res://Assets/Sfx/followinglaser.wav" id="5_32kpr"]
+
+[node name="boss_3_central_laser_attack" type="Node2D" node_paths=PackedStringArray("sfx")]
+script = ExtResource("1_2ip8o")
+sfx = NodePath("AudioStreamPlayer2D")
+
+[node name="laser_shooter" type="Node2D" parent="."]
+script = ExtResource("1_plhw8")
+laser = ExtResource("3_ifxfq")
+warning_laser_scene = ExtResource("4_32kpr")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_32kpr")

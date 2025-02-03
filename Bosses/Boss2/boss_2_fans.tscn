@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckg0wu87q2gf"]
+
+[ext_resource type="Script" uid="uid://170kdhpyat1e" path="res://Bosses/Boss2/boss_2_fans.gd" id="1_7gsfp"]
+[ext_resource type="Texture2D" uid="uid://vd0g1q5gtm7g" path="res://Assets/sprite_sheet_4.png" id="1_gndj6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7gsfp"]
+size = Vector2(448, 992)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7gsfp"]
+radius = 226.274
+
+[node name="boss_2_fans" type="Node2D" node_paths=PackedStringArray("fan_sprite", "sprite_parent")]
+z_index = 1
+scale = Vector2(0.914, 0.914)
+script = ExtResource("1_7gsfp")
+fan_sprite = NodePath("sprite_parent/fan_sprite")
+sprite_parent = NodePath("sprite_parent")
+
+[node name="pushing_area" type="Area2D" parent="."]
+collision_mask = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pushing_area"]
+position = Vector2(0, 272)
+shape = SubResource("RectangleShape2D_7gsfp")
+
+[node name="sprite_parent" type="Node2D" parent="."]
+
+[node name="fan_sprite" type="Node2D" parent="sprite_parent"]
+
+[node name="fan_blade_1" type="Sprite2D" parent="sprite_parent/fan_sprite"]
+position = Vector2(0, -160)
+texture = ExtResource("1_gndj6")
+region_enabled = true
+region_rect = Rect2(768, 0, 128, 320)
+
+[node name="fan_blade_2" type="Sprite2D" parent="sprite_parent/fan_sprite"]
+position = Vector2(160, 0)
+rotation = 1.57079
+texture = ExtResource("1_gndj6")
+region_enabled = true
+region_rect = Rect2(768, 0, 128, 320)
+
+[node name="fan_blade_3" type="Sprite2D" parent="sprite_parent/fan_sprite"]
+position = Vector2(6, 160)
+rotation = -3.14159
+texture = ExtResource("1_gndj6")
+region_enabled = true
+region_rect = Rect2(768, 0, 128, 320)
+
+[node name="fan_blade_4" type="Sprite2D" parent="sprite_parent/fan_sprite"]
+position = Vector2(-160, 7)
+rotation = -1.57079
+texture = ExtResource("1_gndj6")
+region_enabled = true
+region_rect = Rect2(768, 0, 128, 320)
+
+[node name="fan_centre" type="Sprite2D" parent="sprite_parent/fan_sprite"]
+position = Vector2(-1, -5)
+scale = Vector2(0.877198, 0.877198)
+texture = ExtResource("1_gndj6")
+region_enabled = true
+region_rect = Rect2(896, 0, 128, 128)
+
+[node name="damage_area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="damage_area"]
+shape = SubResource("CircleShape2D_7gsfp")

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://deoqkwdhs3usb"]
+
+[ext_resource type="Script" uid="uid://3s054pdaed37" path="res://Bosses/Boss3/ik_leg_controller.gd" id="1_cc8kq"]
+
+[node name="IK_leg_controller" type="Marker2D"]
+script = ExtResource("1_cc8kq")
+move_duration = 0.4

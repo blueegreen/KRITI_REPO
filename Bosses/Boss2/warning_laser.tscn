@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmg8tbxwjcto6"]
+
+[ext_resource type="Texture2D" uid="uid://boh2vf26chk8v" path="res://Assets/laser_small_texture.png" id="1_bsvrw"]
+
+[node name="warning_laser" type="Line2D"]
+visible = false
+modulate = Color(2, 0.126, 0.245, 1)
+top_level = true
+z_index = 3
+points = PackedVector2Array(0, 0, 256, 0)
+width = 5.0
+texture = ExtResource("1_bsvrw")
+texture_mode = 1

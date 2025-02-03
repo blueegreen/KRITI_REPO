@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://4dv71ojj0kbs"]
+
+[node name="win_stage" type="Node2D"]

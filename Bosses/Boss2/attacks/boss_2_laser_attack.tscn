@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1poec2n48qdo"]
+
+[ext_resource type="Script" uid="uid://c3ho74epr3faj" path="res://Bosses/Boss2/attacks/boss_2_laser_attack.gd" id="1_jem2s"]
+
+[node name="boss_2_laser_attack" type="Node2D"]
+script = ExtResource("1_jem2s")

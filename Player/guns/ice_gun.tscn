@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://n7sb3lral4jq"]
+
+[ext_resource type="Texture2D" uid="uid://bycfhkuiwy4ot" path="res://Assets/sprite_sheet_1.png" id="1_4c4ql"]
+[ext_resource type="Script" uid="uid://cdu5aacq0jxxw" path="res://Gun.gd" id="1_ofk5q"]
+[ext_resource type="PackedScene" uid="uid://brlop8lrea4q0" path="res://bullet_spawn_point.tscn" id="2_gwrls"]
+[ext_resource type="PackedScene" uid="uid://djarbdoq5y5o3" path="res://Player/guns/ice_bullet.tscn" id="2_y4n64"]
+
+[node name="ice_gun" type="Node2D" node_paths=PackedStringArray("gun_sprite")]
+script = ExtResource("1_ofk5q")
+bullet = ExtResource("2_y4n64")
+damage = 0.5
+bullets_in_batch = 5
+delay_between_batch_shots = 0.001
+delay_between_shots = 1.0
+gun_sprite = NodePath("ice_gun_sprite")
+
+[node name="ice_gun_sprite" type="Sprite2D" parent="."]
+position = Vector2(32, 0)
+scale = Vector2(0.77, 0.77)
+texture = ExtResource("1_4c4ql")
+region_enabled = true
+region_rect = Rect2(128, 512, 128, 128)
+
+[node name="bullet_spawn_point" parent="." instance=ExtResource("2_gwrls")]
+position = Vector2(81, 0)

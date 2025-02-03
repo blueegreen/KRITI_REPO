@@ -1,0 +1,125 @@
+[gd_scene load_steps=22 format=3 uid="uid://ca8pwyr2plhv0"]
+
+[ext_resource type="Script" uid="uid://bu6sd87xr2apa" path="res://Bosses/Boss2/boss_2.gd" id="1_1s525"]
+[ext_resource type="Texture2D" uid="uid://vd0g1q5gtm7g" path="res://Assets/sprite_sheet_4.png" id="1_gvn1q"]
+[ext_resource type="Texture2D" uid="uid://dpymgar0kwb12" path="res://Assets/boss_face_screen.png" id="2_2ksk0"]
+[ext_resource type="PackedScene" uid="uid://c1poec2n48qdo" path="res://Bosses/Boss2/attacks/boss_2_laser_attack.tscn" id="2_7ja2r"]
+[ext_resource type="PackedScene" uid="uid://c1jklfvdy886c" path="res://Bosses/Boss2/attacks/boss_2_electric_shower_attack.tscn" id="3_cb455"]
+[ext_resource type="Texture2D" uid="uid://cb5edt45cefal" path="res://Assets/sprite_sheet_9.png" id="3_h7d24"]
+[ext_resource type="Script" uid="uid://e1vpg2kp2be6" path="res://Bosses/boss_hitbox.gd" id="3_k1tp7"]
+[ext_resource type="PackedScene" uid="uid://c4253n40kg6cn" path="res://Bosses/Boss2/laser_gun.tscn" id="3_k1vdw"]
+[ext_resource type="Texture2D" uid="uid://brpk5ba2kl1o6" path="res://Assets/circle_grad.png" id="4_7ja2r"]
+[ext_resource type="PackedScene" uid="uid://crctepx3q4vly" path="res://Bosses/Boss2/attacks/boss_2_double_laser_attack.tscn" id="4_cb455"]
+[ext_resource type="PackedScene" uid="uid://c1oy7n82b6iim" path="res://hit_flash.tscn" id="5_1ghx1"]
+[ext_resource type="Texture2D" uid="uid://dohbe30b71p8b" path="res://Assets/grad.png" id="5_cb455"]
+[ext_resource type="PackedScene" uid="uid://bgxwd5q6k5811" path="res://Bosses/Boss1/boss_1_remote_hand.tscn" id="5_cfiu0"]
+[ext_resource type="Shader" uid="uid://b3jbwdaur6jju" path="res://Shaders/white_flash.gdshader" id="6_n0ha6"]
+[ext_resource type="Script" uid="uid://ch2m4feyig562" path="res://Bosses/Boss1/boss_arms_animator.gd" id="9_n0ha6"]
+[ext_resource type="PackedScene" uid="uid://bfks0nc2dx4t8" path="res://Bosses/Boss2/attacks/boss_2_electric_pulse_attack.tscn" id="14_2ksk0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k1vdw"]
+size = Vector2(552, 450)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h82f1"]
+resource_local_to_scene = true
+shader = ExtResource("6_n0ha6")
+shader_parameter/white = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ksk0"]
+size = Vector2(461.786, 654.634)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cb455"]
+size = Vector2(41.8653, 1117.29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2dr8m"]
+size = Vector2(36.0444, 1109.01)
+
+[node name="boss_2" type="Node2D" node_paths=PackedStringArray("laser_gun_1", "laser_gun_2") groups=["enemy"]]
+script = ExtResource("1_1s525")
+laser_gun_1 = NodePath("laser_gun")
+laser_gun_2 = NodePath("laser_gun2")
+phase_1_attacks = Array[PackedScene]([ExtResource("3_cb455"), ExtResource("2_7ja2r")])
+phase_2_attacks = Array[PackedScene]([ExtResource("4_cb455"), ExtResource("14_2ksk0"), ExtResource("3_cb455")])
+
+[node name="BossFaceScreen" type="Sprite2D" parent="."]
+position = Vector2(0, 4)
+texture = ExtResource("2_2ksk0")
+
+[node name="face_sprite" type="Sprite2D" parent="."]
+position = Vector2(25, 20)
+scale = Vector2(1.20126, 1.20126)
+texture = ExtResource("3_h7d24")
+vframes = 2
+frame = 1
+region_enabled = true
+region_rect = Rect2(0, 0, 320, 384)
+
+[node name="boss_shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+position = Vector2(0, 224)
+scale = Vector2(2.75, 1)
+texture = ExtResource("4_7ja2r")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-1.69407e-21, 16)
+scale = Vector2(1.35503, 1.16573)
+energy = 0.7
+texture = ExtResource("5_cb455")
+
+[node name="laser_gun" parent="." instance=ExtResource("3_k1vdw")]
+position = Vector2(480, 160)
+rotation = 0.523599
+
+[node name="laser_gun2" parent="." instance=ExtResource("3_k1vdw")]
+position = Vector2(-448, 128)
+rotation = -3.66519
+flipped = true
+
+[node name="boss2_hitbox" type="Area2D" parent="." node_paths=PackedStringArray("target")]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("3_k1tp7")
+target = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boss2_hitbox"]
+position = Vector2(0, 16)
+shape = SubResource("RectangleShape2D_k1vdw")
+
+[node name="body_sprite" type="Sprite2D" parent="."]
+position = Vector2(0, 192)
+texture = ExtResource("1_gvn1q")
+offset = Vector2(0, -192)
+region_enabled = true
+region_rect = Rect2(0, 0, 768, 576)
+
+[node name="hit_flash" parent="body_sprite" instance=ExtResource("5_1ghx1")]
+flash_mat = SubResource("ShaderMaterial_h82f1")
+
+[node name="Boss1_RemoteHand" parent="." instance=ExtResource("5_cfiu0")]
+position = Vector2(480, -32)
+
+[node name="boss_arms_animator" type="Node" parent="." node_paths=PackedStringArray("arms")]
+script = ExtResource("9_n0ha6")
+arms = [NodePath("../laser_gun"), NodePath("../laser_gun2"), NodePath("../Boss1_RemoteHand")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 135)
+scale = Vector2(1.03078, 0.304777)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -92.6628)
+shape = SubResource("RectangleShape2D_2ksk0")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-212.05, -332.25)
+shape = SubResource("RectangleShape2D_cb455")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(214.96, -334.671)
+shape = SubResource("RectangleShape2D_2dr8m")
+
+[connection signal="damage_taken" from="boss2_hitbox" to="." method="move_on_damage"]
+[connection signal="damage_taken" from="boss2_hitbox" to="body_sprite/hit_flash" method="trigger_shader"]

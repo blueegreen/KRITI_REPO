@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgxwd5q6k5811"]
+
+[ext_resource type="Texture2D" uid="uid://codnyxm18s3el" path="res://Assets/sprite_sheet_2.png" id="1_yc0g7"]
+[ext_resource type="Texture2D" uid="uid://dohbe30b71p8b" path="res://Assets/grad.png" id="2_gcima"]
+
+[node name="Boss1_RemoteHand" type="Node2D"]
+z_index = 3
+
+[node name="SpriteSheet2" type="Sprite2D" parent="."]
+position = Vector2(32, -64)
+texture = ExtResource("1_yc0g7")
+region_enabled = true
+region_rect = Rect2(768, 384, 256, 320)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(32, -3.8147e-06)
+scale = Vector2(1.16263, 0.653211)
+energy = 0.2
+texture = ExtResource("2_gcima")

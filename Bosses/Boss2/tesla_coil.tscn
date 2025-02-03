@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://cycp1scovhlqw"]
+
+[ext_resource type="Texture2D" uid="uid://vd0g1q5gtm7g" path="res://Assets/sprite_sheet_4.png" id="1_niql3"]
+[ext_resource type="Script" uid="uid://nfoe2iu60rf8" path="res://Bosses/Boss2/tesla_coil.gd" id="1_pj7e2"]
+[ext_resource type="Texture2D" uid="uid://d322d7fawys4x" path="res://Assets/tile_circle.png" id="2_tj53h"]
+[ext_resource type="Shader" uid="uid://bjkiw6yl4k08" path="res://Shaders/outline.gdshader" id="2_xv635"]
+[ext_resource type="Texture2D" uid="uid://dohbe30b71p8b" path="res://Assets/grad.png" id="5_4n51u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pj7e2"]
+shader = ExtResource("2_xv635")
+shader_parameter/outer_line_color = Color(1, 1, 1, 1)
+shader_parameter/inner_line_color = Color(0.00451553, 0.176533, 0.78841, 1)
+
+[node name="tesla_coil" type="Node2D"]
+script = ExtResource("1_pj7e2")
+
+[node name="coil_sprite" type="Sprite2D" parent="."]
+modulate = Color(1.2, 1.2, 1.2, 1)
+position = Vector2(0, -32)
+rotation = 1.57079
+texture = ExtResource("1_niql3")
+offset = Vector2(-130, 0)
+region_enabled = true
+region_rect = Rect2(64, 576, 512, 320)
+
+[node name="electric_pulse_sprite" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(2, 2, 2, 1)
+z_index = 7
+texture_filter = 2
+material = SubResource("ShaderMaterial_pj7e2")
+position = Vector2(0, -301)
+texture = ExtResource("2_tj53h")
+
+[node name="attack_spawn_point" type="Marker2D" parent="."]
+position = Vector2(0.000564575, -300)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(1, 79, -102, 58, -149, 2, -86, -46, -1, -57, 86, -41, 150, 2, 94, 61)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -117)
+scale = Vector2(1.35503, 1.16573)
+energy = 0.2
+texture = ExtResource("5_4n51u")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(0, -304)
+scale = Vector2(0.837231, 0.837231)
+energy = 0.2
+texture = ExtResource("5_4n51u")

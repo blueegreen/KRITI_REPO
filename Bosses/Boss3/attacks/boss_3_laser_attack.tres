@@ -1,0 +1,91 @@
+[gd_resource type="VisualShader" load_steps=8 format=3 uid="uid://ksk6vlc7bgd3"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_oueqh"]
+expanded_output_ports = [0]
+source = 5
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_kjd0w"]
+parameter_name = "laser_texture"
+texture_type = 1
+texture_repeat = 1
+
+[sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_18wqo"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_oueqh"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_kjd0w"]
+op_type = 0
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_oueqh"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1.5, 1.5, 1.5)]
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_oueqh"]
+default_input_values = [0, 0.0, 1, -1.0]
+operator = 2
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix, unshaded;
+
+uniform sampler2D laser_texture : source_color, repeat_enable;
+
+
+
+void fragment() {
+// Input:5
+	float n_out5p0 = TIME;
+
+
+// FloatOp:8
+	float n_in8p1 = -1.00000;
+	float n_out8p0 = n_out5p0 * n_in8p1;
+
+
+// VectorCompose:6
+	float n_in6p1 = 0.00000;
+	vec2 n_out6p0 = vec2(n_out8p0, n_in6p1);
+
+
+// UVFunc:4
+	vec2 n_in4p1 = vec2(1.00000, 1.00000);
+	vec2 n_out4p0 = n_out6p0 * n_in4p1 + UV;
+
+
+	vec4 n_out2p0;
+// Texture2D:2
+	n_out2p0 = texture(laser_texture, n_out4p0);
+
+
+// VectorOp:7
+	vec3 n_in7p1 = vec3(1.50000, 1.50000, 1.50000);
+	vec3 n_out7p0 = vec3(n_out2p0.xyz) * n_in7p1;
+
+
+// Output:0
+	COLOR.rgb = n_out7p0;
+	COLOR.a = n_out7p0.x;
+
+
+}
+"
+mode = 1
+flags/unshaded = true
+flags/light_only = false
+nodes/fragment/0/position = Vector2(600, 160)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_oueqh")
+nodes/fragment/2/position = Vector2(2.19494, 205.328)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture2DParameter_kjd0w")
+nodes/fragment/3/position = Vector2(-360, 480)
+nodes/fragment/4/node = SubResource("VisualShaderNodeUVFunc_18wqo")
+nodes/fragment/4/position = Vector2(-400, 220)
+nodes/fragment/5/node = SubResource("VisualShaderNodeInput_oueqh")
+nodes/fragment/5/position = Vector2(-1100, 180)
+nodes/fragment/6/node = SubResource("VisualShaderNodeVectorCompose_kjd0w")
+nodes/fragment/6/position = Vector2(-600, 280)
+nodes/fragment/7/node = SubResource("VisualShaderNodeVectorOp_oueqh")
+nodes/fragment/7/position = Vector2(280, 160)
+nodes/fragment/8/node = SubResource("VisualShaderNodeFloatOp_oueqh")
+nodes/fragment/8/position = Vector2(-820, 260)
+nodes/fragment/connections = PackedInt32Array(3, 0, 2, 2, 4, 0, 2, 0, 6, 0, 4, 2, 2, 0, 7, 0, 7, 0, 0, 1, 7, 0, 0, 0, 5, 0, 8, 0, 8, 0, 6, 0)

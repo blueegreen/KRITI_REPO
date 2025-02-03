@@ -1,0 +1,92 @@
+[gd_scene load_steps=12 format=4 uid="uid://dl23crihiwe6n"]
+
+[ext_resource type="Script" uid="uid://konrjl3thpn1" path="res://base_level.gd" id="1_3o4py"]
+[ext_resource type="PackedScene" uid="uid://c15ymp42pa487" path="res://player.tscn" id="1_bo3yr"]
+[ext_resource type="Texture2D" uid="uid://chgfp3jju1hvg" path="res://icon.svg" id="1_eesb3"]
+[ext_resource type="PackedScene" uid="uid://bbkyej8b0mdk5" path="res://mole_manager.tscn" id="4_3o4py"]
+[ext_resource type="PackedScene" uid="uid://r4juqn0fmrji" path="res://mole_repulsor.tscn" id="5_ftfrf"]
+[ext_resource type="PackedScene" uid="uid://3ssfdx2pkiqt" path="res://pause_menu.tscn" id="6_u2wky"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_eesb3"]
+vertices = PackedVector2Array(32.7422, 32.1719, -31.6094, 32.1719, -31.6094, -31.6094, 31.6094, -31.6094)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-31.6105, -31.6105, 31.6105, -31.6105, 32.7395, 32.175, -31.6105, 32.175)])
+agent_radius = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3o4py"]
+texture = ExtResource("1_eesb3")
+0:0/size_in_atlas = Vector2i(4, 4)
+0:0/0 = 0
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_eesb3")
+
+[sub_resource type="TileSet" id="TileSet_u2wky"]
+navigation_layer_0/layers = 1
+sources/1 = SubResource("TileSetAtlasSource_3o4py")
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3o4py"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u2wky"]
+size = Vector2(128, 128)
+
+[node name="base_level" type="Node2D"]
+script = ExtResource("1_3o4py")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+modulate = Color(0, 0, 0, 1)
+tile_map_data = PackedByteArray("AAABAAEAAQAAAAAAAAAFAAEAAQAAAAAAAAABAAUAAQAAAAAAAAAFAAUAAQAAAAAAAAD9//3/AQAAAAAAAAABAP3/AQAAAAAAAAAFAP3/AQAAAAAAAAD5//3/AQAAAAAAAAD1//3/AQAAAAAAAAD1/wEAAQAAAAAAAAD1/wUAAQAAAAAAAADx//3/AQAAAAAAAADt//3/AQAAAAAAAADp//3/AQAAAAAAAADl//3/AQAAAAAAAADl//n/AQAAAAAAAADp//n/AQAAAAAAAADl//X/AQAAAAAAAADp//X/AQAAAAAAAAAFAAkAAQAAAAAAAAAJAAkAAQAAAAAAAAANAAkAAQAAAAAAAAARAAkAAQAAAAAAAAAVAAkAAQAAAAAAAAARAA0AAQAAAAAAAAAVAA0AAQAAAAAAAAANAA0AAQAAAAAAAAARABEAAQAAAAAAAADt//n/AQAAAAAAAADx//n/AQAAAAAAAADt//X/AQAAAAAAAADx//X/AQAAAAAAAAD1//n/AQAAAAAAAAD1//X/AQAAAAAAAAD5//X/AQAAAAAAAAD5//n/AQAAAAAAAAD9//n/AQAAAAAAAAD9//X/AQAAAAAAAAABAPX/AQAAAAAAAAABAPn/AQAAAAAAAADh/wEAAQAAAAAAAADh/wUAAQAAAAAAAADl/wEAAQAAAAAAAADl/wUAAQAAAAAAAADp/wEAAQAAAAAAAADp/wUAAQAAAAAAAADt/wEAAQAAAAAAAADt/wUAAQAAAAAAAADx/wEAAQAAAAAAAADx/wUAAQAAAAAAAADl/wkAAQAAAAAAAADl/w0AAQAAAAAAAADp/wkAAQAAAAAAAADp/w0AAQAAAAAAAADt/wkAAQAAAAAAAADt/w0AAQAAAAAAAADx/wkAAQAAAAAAAADx/w0AAQAAAAAAAAD1/wkAAQAAAAAAAAD1/w0AAQAAAAAAAAD5/w0AAQAAAAAAAAD5/xEAAQAAAAAAAAD9/w0AAQAAAAAAAAD9/xEAAQAAAAAAAAABAA0AAQAAAAAAAAABABEAAQAAAAAAAAAFAA0AAQAAAAAAAAAFABEAAQAAAAAAAAAJAA0AAQAAAAAAAAAJABEAAQAAAAAAAAAJAPH/AQAAAAAAAAAJAPX/AQAAAAAAAAAJAPn/AQAAAAAAAAAJAP3/AQAAAAAAAAAJAAEAAQAAAAAAAAAJAAUAAQAAAAAAAAANAPH/AQAAAAAAAAANAPX/AQAAAAAAAAANAPn/AQAAAAAAAAANAP3/AQAAAAAAAAANAAEAAQAAAAAAAAANAAUAAQAAAAAAAAARAPH/AQAAAAAAAAARAPX/AQAAAAAAAAARAPn/AQAAAAAAAAARAP3/AQAAAAAAAAARAAEAAQAAAAAAAAARAAUAAQAAAAAAAAAVAPH/AQAAAAAAAAAVAPX/AQAAAAAAAAAVAPn/AQAAAAAAAAAVAP3/AQAAAAAAAAAVAAEAAQAAAAAAAAAVAAUAAQAAAAAAAAAZAPH/AQAAAAAAAAAZAPX/AQAAAAAAAAAZAPn/AQAAAAAAAAAZAP3/AQAAAAAAAAAZAAEAAQAAAAAAAAAZAAUAAQAAAAAAAAAdAPH/AQAAAAAAAAAdAPX/AQAAAAAAAAAdAPn/AQAAAAAAAAAdAP3/AQAAAAAAAAAdAAEAAQAAAAAAAAAdAAUAAQAAAAAAAAAhAPH/AQAAAAAAAAAhAPX/AQAAAAAAAAAhAPn/AQAAAAAAAAAhAP3/AQAAAAAAAAAhAAEAAQAAAAAAAAAhAAUAAQAAAAAAAAAlAPH/AQAAAAAAAAAlAPX/AQAAAAAAAAAlAPn/AQAAAAAAAAAlAP3/AQAAAAAAAAAlAAEAAQAAAAAAAAAlAAUAAQAAAAAAAAApAPH/AQAAAAAAAAApAPX/AQAAAAAAAAApAPn/AQAAAAAAAAApAP3/AQAAAAAAAAApAAEAAQAAAAAAAAApAAUAAQAAAAAAAADV/wEAAQAAAAAAAADV/wUAAQAAAAAAAADV/wkAAQAAAAAAAADV/w0AAQAAAAAAAADV/xEAAQAAAAAAAADV/xUAAQAAAAAAAADZ/wEAAQAAAAAAAADZ/wUAAQAAAAAAAADZ/wkAAQAAAAAAAADZ/w0AAQAAAAAAAADZ/xEAAQAAAAAAAADZ/xUAAQAAAAAAAADd/wEAAQAAAAAAAADd/wUAAQAAAAAAAADd/wkAAQAAAAAAAADd/w0AAQAAAAAAAADd/xEAAQAAAAAAAADd/xUAAQAAAAAAAADV/+n/AQAAAAAAAADV/+3/AQAAAAAAAADV//H/AQAAAAAAAADV//X/AQAAAAAAAADV//n/AQAAAAAAAADV//3/AQAAAAAAAADZ/+n/AQAAAAAAAADZ/+3/AQAAAAAAAADZ//H/AQAAAAAAAADZ//X/AQAAAAAAAADZ//n/AQAAAAAAAADZ//3/AQAAAAAAAADd/+n/AQAAAAAAAADd/+3/AQAAAAAAAADd//H/AQAAAAAAAADd//X/AQAAAAAAAADd//n/AQAAAAAAAADd//3/AQAAAAAAAAAlAAkAAQAAAAAAAAAlAA0AAQAAAAAAAAApAAkAAQAAAAAAAAApAA0AAQAAAAAAAAAlABEAAQAAAAAAAAAlABUAAQAAAAAAAAApABEAAQAAAAAAAAApABUAAQAAAAAAAAAdAAkAAQAAAAAAAAAdAA0AAQAAAAAAAAAhAAkAAQAAAAAAAAAhAA0AAQAAAAAAAAAYAAkAAQAAAAAAAAAYAA0AAQAAAAAAAAAcAAkAAQAAAAAAAAAcAA0AAQAAAAAAAAAVABEAAQAAAAAAAAAVABUAAQAAAAAAAAAZABEAAQAAAAAAAAAZABUAAQAAAAAAAAAJAOn/AQAAAAAAAAAJAO3/AQAAAAAAAAANAOn/AQAAAAAAAAANAO3/AQAAAAAAAADx/xEAAQAAAAAAAADx/xUAAQAAAAAAAAD1/xEAAQAAAAAAAAD1/xUAAQAAAAAAAAA=")
+tile_set = SubResource("TileSet_u2wky")
+
+[node name="player" parent="." instance=ExtResource("1_bo3yr")]
+position = Vector2(296, 216)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.7, 0.7)
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+collision_layer = 9
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
+position = Vector2(-832, 0)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_3o4py")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D5"]
+position = Vector2(0, -480)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_3o4py")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D5"]
+position = Vector2(832, 0)
+rotation = 4.71239
+shape = SubResource("WorldBoundaryShape2D_3o4py")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D5"]
+position = Vector2(0, 480)
+rotation = 6.28319
+shape = SubResource("WorldBoundaryShape2D_3o4py")
+
+[node name="mole_manager" parent="." instance=ExtResource("4_3o4py")]
+world_size = Vector2(1480, 768)
+seperation_weight = 0.6
+max_radius_seperation_moles = 50.0
+navigation_weight = 0.2
+boid_weight = 0.9
+
+[node name="StaticBody2D" type="RigidBody2D" parent="."]
+position = Vector2(384, 0)
+collision_layer = 0
+collision_mask = 4
+gravity_scale = 0.0
+linear_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_u2wky")
+
+[node name="mole_repulsor" parent="StaticBody2D" instance=ExtResource("5_ftfrf")]
+radius = 80
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("1_eesb3")
+
+[node name="Pause_Menu" parent="." instance=ExtResource("6_u2wky")]

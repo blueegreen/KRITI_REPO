@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhn1a35guhpym"]
+
+[ext_resource type="Texture2D" uid="uid://bycfhkuiwy4ot" path="res://Assets/sprite_sheet_1.png" id="1_4st1f"]
+[ext_resource type="Script" uid="uid://cdu5aacq0jxxw" path="res://Gun.gd" id="1_pppo6"]
+[ext_resource type="PackedScene" uid="uid://cjfb3h7hp26jp" path="res://Player/guns/coffee_bullet.tscn" id="2_5ncqi"]
+[ext_resource type="PackedScene" uid="uid://brlop8lrea4q0" path="res://bullet_spawn_point.tscn" id="2_70w6d"]
+
+[node name="coffee_gun" type="Node2D" node_paths=PackedStringArray("gun_sprite")]
+script = ExtResource("1_pppo6")
+bullet = ExtResource("2_5ncqi")
+bullets_in_batch = 1
+delay_between_shots = 0.8
+angle_randomness = 0.1
+area_attack = true
+gun_sprite = NodePath("coffee_gun_sprite")
+
+[node name="coffee_gun_sprite" type="Sprite2D" parent="."]
+position = Vector2(17, 0)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("1_4st1f")
+region_enabled = true
+region_rect = Rect2(0, 512, 128, 128)
+
+[node name="bullet_spawn_point" parent="." instance=ExtResource("2_70w6d")]
+position = Vector2(65, 0)

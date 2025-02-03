@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1jklfvdy886c"]
+
+[ext_resource type="Script" uid="uid://c7jd8wvorugcj" path="res://Bosses/Boss2/attacks/boss_2_electric_shower_attack.gd" id="1_do5gn"]
+
+[node name="boss_2_electric_shower_attack" type="Node2D"]
+script = ExtResource("1_do5gn")

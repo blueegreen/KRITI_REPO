@@ -1,0 +1,642 @@
+[gd_scene load_steps=28 format=3 uid="uid://bu1ch56wfpgnx"]
+
+[ext_resource type="Script" uid="uid://btghuc1sgvbv6" path="res://Bosses/Boss3/boss_3.gd" id="1_47cov"]
+[ext_resource type="PackedScene" uid="uid://bfyh4h0jdonh6" path="res://Bosses/Boss3/ik_bone.tscn" id="1_rcvk8"]
+[ext_resource type="PackedScene" uid="uid://deoqkwdhs3usb" path="res://Bosses/Boss3/ik_leg_controller.tscn" id="2_mnd71"]
+[ext_resource type="PackedScene" uid="uid://c4l38kweu17rw" path="res://Bosses/Boss3/attacks/boss_3_attack_bullet_hell.tscn" id="2_ogsn1"]
+[ext_resource type="Script" uid="uid://n7wyviftidml" path="res://Bosses/Boss3/leg_controller_group.gd" id="3_8qhy4"]
+[ext_resource type="PackedScene" uid="uid://bm0xax4mxgssg" path="res://Bosses/Boss3/attacks/boss_3_jump_attack.tscn" id="3_dr6ul"]
+[ext_resource type="Texture2D" uid="uid://dgc83qverxl5d" path="res://Assets/sprite_sheet_5.png" id="3_jlsy8"]
+[ext_resource type="PackedScene" uid="uid://bq4bp1ohcodg1" path="res://Bosses/Boss3/attacks/boss_3_laser_attack.tscn" id="4_rx5sh"]
+[ext_resource type="PackedScene" uid="uid://cbplxe4tkgh2d" path="res://Bosses/Boss3/attacks/boss_3_central_laser_attack.tscn" id="5_7rc4a"]
+[ext_resource type="Script" uid="uid://e1vpg2kp2be6" path="res://Bosses/boss_hitbox.gd" id="5_mnd71"]
+[ext_resource type="PackedScene" uid="uid://r4juqn0fmrji" path="res://mole_repulsor.tscn" id="6_jlsy8"]
+[ext_resource type="PackedScene" uid="uid://17hc5w5showv" path="res://Bosses/Boss3/attacks/boss_3_multiple_jump_attack.tscn" id="6_rff3m"]
+[ext_resource type="PackedScene" uid="uid://c1oy7n82b6iim" path="res://hit_flash.tscn" id="7_44677"]
+[ext_resource type="Texture2D" uid="uid://brpk5ba2kl1o6" path="res://Assets/circle_grad.png" id="7_cg5sd"]
+[ext_resource type="Texture2D" uid="uid://dohbe30b71p8b" path="res://Assets/grad.png" id="7_yyano"]
+[ext_resource type="Shader" uid="uid://b3jbwdaur6jju" path="res://Shaders/white_flash.gdshader" id="10_cg5sd"]
+[ext_resource type="Script" uid="uid://cdstfkrtifn3" path="res://Bosses/Boss3/boss_body.gd" id="11_dr6ul"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rcvk8"]
+size = Vector2(128, 192)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k2w6b"]
+resource_local_to_scene = true
+shader = ExtResource("10_cg5sd")
+shader_parameter/white = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qes1k"]
+resource_local_to_scene = true
+shader = ExtResource("10_cg5sd")
+shader_parameter/white = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1wclp"]
+resource_local_to_scene = true
+shader = ExtResource("10_cg5sd")
+shader_parameter/white = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ogsn1"]
+resource_local_to_scene = true
+shader = ExtResource("10_cg5sd")
+shader_parameter/white = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dr6ul"]
+resource_local_to_scene = true
+shader = ExtResource("10_cg5sd")
+shader_parameter/white = 1
+
+[sub_resource type="Animation" id="Animation_mnd71"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("boss_body/ik_parent:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("boss_body/ik_parent/boss_shell_right:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("boss_body/ik_parent/boss_shell_right:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(96, -53)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("boss_body/ik_parent/boss_shell_left:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-97, -32)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("boss_body/ik_parent/boss_shell_left:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_rcvk8"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("boss_body/ik_parent:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.5, 2, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 15), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jlsy8"]
+resource_name = "open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("boss_body/ik_parent:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.22),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 29)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("boss_body/ik_parent/boss_shell_right:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.266667, 0.602962, 0.672146, 0.9),
+"transitions": PackedFloat32Array(0.5, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.338113, -0.338113, -0.269977]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("boss_body/ik_parent/boss_shell_right:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.266667, 0.602962, 0.672146, 0.9),
+"transitions": PackedFloat32Array(0.5, 1, 1, 1),
+"update": 0,
+"values": [Vector2(96, -53), Vector2(196, -118), Vector2(196, -118), Vector2(197, -106)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("boss_body/ik_parent/boss_shell_left:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.266667, 0.602962, 0.672146, 0.9),
+"transitions": PackedFloat32Array(0.5, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-97, -32), Vector2(-218, -81), Vector2(-218, -81), Vector2(-225, -54)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("boss_body/ik_parent/boss_shell_left:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.266667, 0.602962, 0.672146, 0.9),
+"transitions": PackedFloat32Array(0.5, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.299298, 0.299298, 0.184804]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mnd71"]
+_data = {
+&"RESET": SubResource("Animation_mnd71"),
+&"idle": SubResource("Animation_rcvk8"),
+&"open": SubResource("Animation_jlsy8")
+}
+
+[node name="boss_3" type="Node2D" node_paths=PackedStringArray("ik_master", "body", "hitbox") groups=["enemy"]]
+y_sort_enabled = true
+script = ExtResource("1_47cov")
+ik_master = NodePath("leg_group/leg_controller_group")
+body = NodePath("boss_body")
+hitbox = NodePath("boss_body/ik_parent/boss_core/boss_hitbox")
+phase_1_attacks = Array[PackedScene]([ExtResource("2_ogsn1"), ExtResource("3_dr6ul"), ExtResource("4_rx5sh")])
+phase_2_attacks = Array[PackedScene]([ExtResource("5_7rc4a"), ExtResource("6_rff3m"), ExtResource("2_ogsn1"), ExtResource("4_rx5sh")])
+
+[node name="leg_group" type="Node2D" parent="."]
+z_index = 1
+scale = Vector2(1.31736, 1.31736)
+
+[node name="IK_BONE3" parent="leg_group" node_paths=PackedStringArray("is_following") instance=ExtResource("1_rcvk8")]
+position = Vector2(-152, -179)
+rotation = 2.09439
+is_following = NodePath("../leg_controller_group/IK_leg_controller3")
+
+[node name="IK_BONE2" parent="leg_group/IK_BONE3" node_paths=PackedStringArray("constrain_with") instance=ExtResource("1_rcvk8")]
+position = Vector2(87.3875, -96.6407)
+rotation = 2.35619
+is_angle_constrained = true
+angle_limit = 0.5
+constrain_with = NodePath("IK_BONE3")
+
+[node name="IK_BONE3" parent="leg_group/IK_BONE3/IK_BONE2" node_paths=PackedStringArray("is_pinned") instance=ExtResource("1_rcvk8")]
+position = Vector2(-72.1265, 91.4482)
+rotation = -0.785398
+is_pinned = NodePath("../../../../boss_body/ik_parent")
+is_angle_constrained = true
+angle_limit = 0.2
+
+[node name="IK_BONE4" parent="leg_group" node_paths=PackedStringArray("is_following") instance=ExtResource("1_rcvk8")]
+position = Vector2(149, -192)
+rotation = 1.0472
+is_following = NodePath("../leg_controller_group/IK_leg_controller4")
+
+[node name="IK_BONE2" parent="leg_group/IK_BONE4" node_paths=PackedStringArray("constrain_with") instance=ExtResource("1_rcvk8")]
+position = Vector2(93.9851, 91.213)
+rotation = -2.35619
+is_angle_constrained = true
+angle_limit = 1.2
+constrain_with = NodePath("IK_BONE3")
+
+[node name="IK_BONE3" parent="leg_group/IK_BONE4/IK_BONE2" node_paths=PackedStringArray("is_pinned") instance=ExtResource("1_rcvk8")]
+position = Vector2(-85.3398, -98.2604)
+rotation = 0.785397
+is_pinned = NodePath("../../../../boss_body/ik_parent")
+is_angle_constrained = true
+angle_limit = 0.2
+
+[node name="IK_BONE" parent="leg_group" node_paths=PackedStringArray("is_following") instance=ExtResource("1_rcvk8")]
+position = Vector2(149, -32)
+rotation = 0.523598
+is_following = NodePath("../leg_controller_group/IK_leg_controller")
+
+[node name="IK_BONE2" parent="leg_group/IK_BONE" node_paths=PackedStringArray("constrain_with") instance=ExtResource("1_rcvk8")]
+position = Vector2(22.6273, 113.137)
+rotation = -1.83259
+is_angle_constrained = true
+angle_limit = 0.5
+constrain_with = NodePath("IK_BONE3")
+
+[node name="IK_BONE3" parent="leg_group/IK_BONE/IK_BONE2" node_paths=PackedStringArray("is_pinned") instance=ExtResource("1_rcvk8")]
+position = Vector2(36.2871, -126.851)
+rotation = 1.82632
+is_pinned = NodePath("../../../../boss_body/ik_parent")
+is_angle_constrained = true
+angle_limit = 0.5
+
+[node name="IK_BONE2" parent="leg_group" node_paths=PackedStringArray("is_following") instance=ExtResource("1_rcvk8")]
+position = Vector2(-171, -32)
+rotation = 2.3562
+is_following = NodePath("../leg_controller_group/IK_leg_controller2")
+
+[node name="IK_BONE2" parent="leg_group/IK_BONE2" node_paths=PackedStringArray("constrain_with") instance=ExtResource("1_rcvk8")]
+position = Vector2(35.1376, -131.139)
+rotation = 1.83259
+is_angle_constrained = true
+angle_limit = 0.5
+constrain_with = NodePath("IK_BONE3")
+
+[node name="IK_BONE3" parent="leg_group/IK_BONE2/IK_BONE2" node_paths=PackedStringArray("is_pinned") instance=ExtResource("1_rcvk8")]
+position = Vector2(22.6278, 113.137)
+rotation = -1.83259
+is_pinned = NodePath("../../../../boss_body/ik_parent")
+is_angle_constrained = true
+angle_limit = 0.5
+
+[node name="IK_BONE5" parent="leg_group" node_paths=PackedStringArray("is_following") instance=ExtResource("1_rcvk8")]
+position = Vector2(149, 64)
+rotation = 1.0472
+is_following = NodePath("../leg_controller_group/IK_leg_controller5")
+
+[node name="IK_BONE2" parent="leg_group/IK_BONE5" node_paths=PackedStringArray("constrain_with") instance=ExtResource("1_rcvk8")]
+position = Vector2(22.6273, 113.137)
+rotation = -1.54219
+is_angle_constrained = true
+angle_limit = 0.5
+constrain_with = NodePath("IK_BONE3")
+
+[node name="IK_BONE3" parent="leg_group/IK_BONE5/IK_BONE2" node_paths=PackedStringArray("is_pinned") instance=ExtResource("1_rcvk8")]
+position = Vector2(-0.000114441, -135.765)
+rotation = 1.57079
+is_pinned = NodePath("../../../../boss_body/ik_parent")
+is_angle_constrained = true
+angle_limit = 0.5
+
+[node name="IK_BONE6" parent="leg_group" node_paths=PackedStringArray("is_following") instance=ExtResource("1_rcvk8")]
+position = Vector2(-161, 64)
+rotation = 1.8326
+is_following = NodePath("../leg_controller_group/IK_leg_controller6")
+
+[node name="IK_BONE2" parent="leg_group/IK_BONE6" node_paths=PackedStringArray("constrain_with") instance=ExtResource("1_rcvk8")]
+position = Vector2(45.2541, -135.765)
+rotation = 1.83259
+is_angle_constrained = true
+angle_limit = 0.5
+constrain_with = NodePath("IK_BONE3")
+
+[node name="IK_BONE3" parent="leg_group/IK_BONE6/IK_BONE2" node_paths=PackedStringArray("is_pinned") instance=ExtResource("1_rcvk8")]
+position = Vector2(35.1389, 131.138)
+rotation = -1.83259
+is_pinned = NodePath("../../../../boss_body/ik_parent")
+is_angle_constrained = true
+angle_limit = 0.5
+
+[node name="leg_sprites" type="Node2D" parent="leg_group"]
+visible = false
+
+[node name="leg1" type="Node2D" parent="leg_group/leg_sprites"]
+
+[node name="leg_lower_part1" type="Sprite2D" parent="leg_group/leg_sprites/leg1"]
+position = Vector2(194.328, 0)
+rotation = -1.0472
+scale = Vector2(0.759093, 0.759093)
+texture = ExtResource("3_jlsy8")
+region_enabled = true
+region_rect = Rect2(576, 192, 128, 256)
+
+[node name="leg_middle_1" type="Sprite2D" parent="leg_group/leg_sprites/leg1"]
+position = Vector2(121.455, 24.291)
+rotation = 0.261799
+scale = Vector2(0.759093, 0.759093)
+texture = ExtResource("3_jlsy8")
+region_enabled = true
+region_rect = Rect2(448, 64, 128, 192)
+
+[node name="leg_upper_part1" type="Sprite2D" parent="leg_group/leg_sprites/leg1"]
+position = Vector2(72.8729, 48.5819)
+rotation = 2.09439
+scale = Vector2(0.759093, 0.759093)
+texture = ExtResource("3_jlsy8")
+region_enabled = true
+region_rect = Rect2(448, 256, 128, 192)
+
+[node name="leg2" type="Node2D" parent="leg_group/leg_sprites"]
+
+[node name="leg_lower_part2" type="Sprite2D" parent="leg_group/leg_sprites/leg2"]
+position = Vector2(-218.619, 24.291)
+rotation = 0.785397
+scale = Vector2(0.759093, 0.759093)
+texture = ExtResource("3_jlsy8")
+region_enabled = true
+region_rect = Rect2(576, 192, 128, 256)
+
+[node name="leg_middle_2" type="Sprite2D" parent="leg_group/leg_sprites/leg2"]
+position = Vector2(-145.746, 31.8819)
+rotation = -0.523598
+scale = Vector2(0.759093, 0.759093)
+texture = ExtResource("3_jlsy8")
+region_enabled = true
+region_rect = Rect2(448, 64, 128, 192)
+
+[node name="leg_upper_part2" type="Sprite2D" parent="leg_group/leg_sprites/leg2"]
+position = Vector2(-72.8729, 63.7638)
+rotation = -2.09439
+scale = Vector2(0.759093, 0.759093)
+texture = ExtResource("3_jlsy8")
+region_enabled = true
+region_rect = Rect2(448, 256, 128, 192)
+
+[node name="leg3" type="Node2D" parent="leg_group/leg_sprites"]
+
+[node name="leg_lower_part3" type="Sprite2D" parent="leg_group/leg_sprites/leg3"]
+position = Vector2(-170.037, -121.455)
+rotation = 0.523598
+scale = Vector2(0.759093, 0.759093)
+texture = ExtResource("3_jlsy8")
+region_enabled = true
+region_rect = Rect2(576, 192, 128, 256)
+
+[node name="leg_middle_3" type="Sprite2D" parent="leg_group/leg_sprites/leg3"]
+position = Vector2(-121.455, -121.455)
+rotation = -0.261799
+scale = Vector2(0.759093, 0.759093)
+texture = ExtResource("3_jlsy8")
+region_enabled = true
+region_rect = Rect2(448, 64, 128, 192)
+
+[node name="leg_upper_part3" type="Sprite2D" parent="leg_group/leg_sprites/leg3"]
+position = Vector2(-72.8729, -48.5819)
+rotation = -1.0472
+scale = Vector2(0.759093, 0.759093)
+texture = ExtResource("3_jlsy8")
+region_enabled = true
+region_rect = Rect2(448, 256, 128, 192)
+
+[node name="leg4" type="Node2D" parent="leg_group/leg_sprites"]
+
+[node name="leg_lower_part4" type="Sprite2D" parent="leg_group/leg_sprites/leg4"]
+position = Vector2(170.037, -121.455)
+rotation = -0.523598
+scale = Vector2(0.759093, 0.759093)
+texture = ExtResource("3_jlsy8")
+region_enabled = true
+region_rect = Rect2(576, 192, 128, 256)
+
+[node name="leg_middle_4" type="Sprite2D" parent="leg_group/leg_sprites/leg4"]
+position = Vector2(121.455, -121.455)
+rotation = 0.261799
+scale = Vector2(0.759093, 0.759093)
+texture = ExtResource("3_jlsy8")
+region_enabled = true
+region_rect = Rect2(448, 64, 128, 192)
+
+[node name="leg_upper_part4" type="Sprite2D" parent="leg_group/leg_sprites/leg4"]
+position = Vector2(72.8729, -48.5819)
+rotation = 1.0472
+scale = Vector2(0.759093, 0.759093)
+texture = ExtResource("3_jlsy8")
+region_enabled = true
+region_rect = Rect2(448, 256, 128, 192)
+
+[node name="leg5" type="Node2D" parent="leg_group/leg_sprites"]
+
+[node name="leg_lower_part5" type="Sprite2D" parent="leg_group/leg_sprites/leg5"]
+position = Vector2(194.328, 145.746)
+rotation = -0.523598
+scale = Vector2(0.759093, 0.759093)
+texture = ExtResource("3_jlsy8")
+region_enabled = true
+region_rect = Rect2(576, 192, 128, 256)
+
+[node name="leg_middle_5" type="Sprite2D" parent="leg_group/leg_sprites/leg5"]
+position = Vector2(121.455, 97.1638)
+rotation = 1.0472
+scale = Vector2(0.759093, 0.759093)
+texture = ExtResource("3_jlsy8")
+region_enabled = true
+region_rect = Rect2(448, 64, 128, 192)
+
+[node name="leg_upper_part5" type="Sprite2D" parent="leg_group/leg_sprites/leg5"]
+position = Vector2(48.5819, 97.1638)
+rotation = 2.61799
+scale = Vector2(0.759093, 0.759093)
+texture = ExtResource("3_jlsy8")
+region_enabled = true
+region_rect = Rect2(448, 256, 128, 192)
+
+[node name="leg6" type="Node2D" parent="leg_group/leg_sprites"]
+
+[node name="leg_lower_part6" type="Sprite2D" parent="leg_group/leg_sprites/leg6"]
+position = Vector2(-145.746, 145.746)
+rotation = 0.523598
+scale = Vector2(0.759093, 0.759093)
+texture = ExtResource("3_jlsy8")
+region_enabled = true
+region_rect = Rect2(576, 192, 128, 256)
+
+[node name="leg_middle_6" type="Sprite2D" parent="leg_group/leg_sprites/leg6"]
+position = Vector2(-72.8729, 121.455)
+rotation = -1.0472
+scale = Vector2(0.759093, 0.759093)
+texture = ExtResource("3_jlsy8")
+region_enabled = true
+region_rect = Rect2(448, 64, 128, 192)
+
+[node name="leg_upper_part6" type="Sprite2D" parent="leg_group/leg_sprites/leg6"]
+position = Vector2(-24.291, 97.1638)
+rotation = -2.8798
+scale = Vector2(0.759093, 0.759093)
+texture = ExtResource("3_jlsy8")
+region_enabled = true
+region_rect = Rect2(448, 256, 128, 192)
+
+[node name="leg_controller_group" type="Node2D" parent="leg_group"]
+script = ExtResource("3_8qhy4")
+
+[node name="IK_leg_controller" parent="leg_group/leg_controller_group" node_paths=PackedStringArray("leg_segment", "body") instance=ExtResource("2_mnd71")]
+position = Vector2(245, 32)
+leg_segment = NodePath("../../IK_BONE")
+body = NodePath("../../../boss_body/ik_parent")
+offset = 0.2
+
+[node name="IK_leg_controller2" parent="leg_group/leg_controller_group" node_paths=PackedStringArray("leg_segment", "body") instance=ExtResource("2_mnd71")]
+position = Vector2(-267, 64)
+leg_segment = NodePath("../../IK_BONE2")
+body = NodePath("../../../boss_body/ik_parent")
+offset = 0.3
+
+[node name="IK_leg_controller3" parent="leg_group/leg_controller_group" node_paths=PackedStringArray("leg_segment", "body") instance=ExtResource("2_mnd71")]
+position = Vector2(-227, -64)
+leg_segment = NodePath("../../IK_BONE3")
+body = NodePath("../../../boss_body/ik_parent")
+offset = 0.4
+
+[node name="IK_leg_controller4" parent="leg_group/leg_controller_group" node_paths=PackedStringArray("leg_segment", "body") instance=ExtResource("2_mnd71")]
+position = Vector2(213, -82)
+leg_segment = NodePath("../../IK_BONE4")
+body = NodePath("../../../boss_body/ik_parent")
+offset = 0.25
+
+[node name="IK_leg_controller5" parent="leg_group/leg_controller_group" node_paths=PackedStringArray("leg_segment", "body") instance=ExtResource("2_mnd71")]
+position = Vector2(213, 192)
+leg_segment = NodePath("../../IK_BONE5")
+body = NodePath("../../../boss_body/ik_parent")
+offset = 0.6
+
+[node name="IK_leg_controller6" parent="leg_group/leg_controller_group" node_paths=PackedStringArray("leg_segment", "body") instance=ExtResource("2_mnd71")]
+position = Vector2(-193, 192)
+leg_segment = NodePath("../../IK_BONE6")
+body = NodePath("../../../boss_body/ik_parent")
+offset = 0.7
+
+[node name="boss_body" type="Node2D" parent="."]
+script = ExtResource("11_dr6ul")
+
+[node name="mole_repulsor" parent="boss_body" instance=ExtResource("6_jlsy8")]
+radius = 300
+
+[node name="CircleGrad" type="Sprite2D" parent="boss_body"]
+modulate = Color(0.390403, 0, 0.114106, 1)
+z_index = 1
+position = Vector2(4, -31)
+scale = Vector2(2.10423, 2.10423)
+texture = ExtResource("7_cg5sd")
+
+[node name="ik_parent" type="Node2D" parent="boss_body"]
+
+[node name="boss_core" type="Sprite2D" parent="boss_body/ik_parent"]
+z_index = 2
+y_sort_enabled = true
+position = Vector2(0, -64)
+texture = ExtResource("3_jlsy8")
+region_enabled = true
+region_rect = Rect2(64, 512, 128, 256)
+
+[node name="PointLight2D" type="PointLight2D" parent="boss_body/ik_parent/boss_core"]
+scale = Vector2(0.834, 0.834)
+color = Color(1, 0.469494, 0.401435, 1)
+energy = 0.6
+shadow_item_cull_mask = 2
+texture = ExtResource("7_yyano")
+
+[node name="boss_hitbox" type="Area2D" parent="boss_body/ik_parent/boss_core" node_paths=PackedStringArray("target")]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("5_mnd71")
+target = NodePath("../../../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boss_body/ik_parent/boss_core/boss_hitbox"]
+position = Vector2(0, 32)
+shape = SubResource("RectangleShape2D_rcvk8")
+
+[node name="hit_flash" parent="boss_body/ik_parent/boss_core" instance=ExtResource("7_44677")]
+position = Vector2(0, 64)
+flash_mat = SubResource("ShaderMaterial_k2w6b")
+
+[node name="boss_shell_left" type="Sprite2D" parent="boss_body/ik_parent"]
+z_index = 2
+y_sort_enabled = true
+position = Vector2(-97, -32)
+texture = ExtResource("3_jlsy8")
+region_enabled = true
+region_rect = Rect2(0, 0, 256, 448)
+
+[node name="hit_flash2" parent="boss_body/ik_parent/boss_shell_left" instance=ExtResource("7_44677")]
+position = Vector2(97, 32)
+flash_mat = SubResource("ShaderMaterial_qes1k")
+
+[node name="shell_left_interior" type="Sprite2D" parent="boss_body/ik_parent/boss_shell_left"]
+z_index = -1
+position = Vector2(146, 0)
+texture = ExtResource("3_jlsy8")
+region_enabled = true
+region_rect = Rect2(640, 448, 128, 448)
+
+[node name="hit_flash4" parent="boss_body/ik_parent/boss_shell_left/shell_left_interior" instance=ExtResource("7_44677")]
+position = Vector2(-49, 32)
+flash_mat = SubResource("ShaderMaterial_1wclp")
+
+[node name="shell_left_collider" type="StaticBody2D" parent="boss_body/ik_parent/boss_shell_left"]
+collision_layer = 24
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="boss_body/ik_parent/boss_shell_left/shell_left_collider"]
+polygon = PackedVector2Array(97, -192, -31, -128, -95, 0, -31, 128, 97, 192, 129, 0)
+
+[node name="boss_shell_right" type="Sprite2D" parent="boss_body/ik_parent"]
+z_index = 2
+y_sort_enabled = true
+position = Vector2(96, -53)
+texture = ExtResource("3_jlsy8")
+region_enabled = true
+region_rect = Rect2(192, 448, 256, 448)
+
+[node name="hit_flash3" parent="boss_body/ik_parent/boss_shell_right" instance=ExtResource("7_44677")]
+position = Vector2(-96, 53)
+flash_mat = SubResource("ShaderMaterial_ogsn1")
+
+[node name="shell_right_interior" type="Sprite2D" parent="boss_body/ik_parent/boss_shell_right"]
+z_index = -1
+position = Vector2(-131, 21)
+texture = ExtResource("3_jlsy8")
+region_enabled = true
+region_rect = Rect2(448, 448, 192, 448)
+
+[node name="hit_flash5" parent="boss_body/ik_parent/boss_shell_right/shell_right_interior" instance=ExtResource("7_44677")]
+position = Vector2(35, 32)
+flash_mat = SubResource("ShaderMaterial_dr6ul")
+
+[node name="shell_right_collider" type="StaticBody2D" parent="boss_body/ik_parent/boss_shell_right"]
+collision_layer = 24
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="boss_body/ik_parent/boss_shell_right/shell_right_collider"]
+polygon = PackedVector2Array(-96, -171, 32, -107, 96, 21, 32, 149, -96, 213, -110, 23)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_mnd71")
+}
+autoplay = "idle"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="damage_taken" from="boss_body/ik_parent/boss_core/boss_hitbox" to="boss_body/ik_parent/boss_core/hit_flash" method="trigger_shader"]
+[connection signal="damage_taken" from="boss_body/ik_parent/boss_core/boss_hitbox" to="boss_body/ik_parent/boss_shell_left/hit_flash2" method="trigger_shader"]
+[connection signal="damage_taken" from="boss_body/ik_parent/boss_core/boss_hitbox" to="boss_body/ik_parent/boss_shell_left/shell_left_interior/hit_flash4" method="trigger_shader"]
+[connection signal="damage_taken" from="boss_body/ik_parent/boss_core/boss_hitbox" to="boss_body/ik_parent/boss_shell_right/hit_flash3" method="trigger_shader"]
+[connection signal="damage_taken" from="boss_body/ik_parent/boss_core/boss_hitbox" to="boss_body/ik_parent/boss_shell_right/shell_right_interior/hit_flash5" method="trigger_shader"]
+[connection signal="timeout" from="Timer" to="." method="reset_attack"]

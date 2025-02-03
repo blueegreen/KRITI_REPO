@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqre8l131fdjv"]
+
+[ext_resource type="Script" uid="uid://dp3ty1lmp3ylh" path="res://powerup_management/level_powerup_scene.gd" id="1_cg46l"]
+
+[node name="level_powerup_scene" type="CanvasLayer"]
+script = ExtResource("1_cg46l")
+possible_powerups = Array[int]([0, 1, 2, 0, 0, 0, 0, 0])
+num_of_cards = 5
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = -462.0
+offset_top = -319.0
+offset_right = 1493.0
+offset_bottom = 776.0
+scale = Vector2(1.46798, 1.46798)
+mouse_filter = 2
+color = Color(0.0463464, 0.0967925, 0.146729, 1)

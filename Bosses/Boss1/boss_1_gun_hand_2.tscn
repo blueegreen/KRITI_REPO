@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://ck50jouc1b22d"]
+
+[ext_resource type="Script" uid="uid://b01ed6akrgxsh" path="res://Bosses/Boss1/BossGun.gd" id="1_75h0v"]
+[ext_resource type="Texture2D" uid="uid://codnyxm18s3el" path="res://Assets/sprite_sheet_2.png" id="1_rnxub"]
+[ext_resource type="PackedScene" uid="uid://bt23dyd83jt1t" path="res://Bosses/boss_bullet_2.tscn" id="2_0c84g"]
+[ext_resource type="PackedScene" uid="uid://brlop8lrea4q0" path="res://bullet_spawn_point.tscn" id="2_63qqy"]
+[ext_resource type="Texture2D" uid="uid://dohbe30b71p8b" path="res://Assets/grad.png" id="5_0c84g"]
+
+[node name="Boss1_GunHand_2" type="Node2D" node_paths=PackedStringArray("gun_sprite")]
+script = ExtResource("1_75h0v")
+bullet = ExtResource("2_0c84g")
+affiliation = "none"
+orient_bullet = true
+gun_sprite = NodePath("SpriteSheet2")
+
+[node name="SpriteSheet2" type="Sprite2D" parent="."]
+position = Vector2(96, 7)
+texture = ExtResource("1_rnxub")
+offset = Vector2(0, 36.085)
+region_enabled = true
+region_rect = Rect2(0, 576, 384, 256)
+
+[node name="bullet_spawn_point" parent="." instance=ExtResource("2_63qqy")]
+position = Vector2(297, 0)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(64, -32)
+scale = Vector2(1.16263, 0.653211)
+energy = 0.2
+texture = ExtResource("5_0c84g")
