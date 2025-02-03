@@ -56,13 +56,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -576.0
-offset_top = -312.0
-offset_right = -286.0
-offset_bottom = -147.0
+offset_left = -612.96
+offset_top = -319.06
+offset_right = -322.96
+offset_bottom = -154.06
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(3.97319, 3.97319)
+scale = Vector2(4.17845, 4.17845)
 
 [node name="Sprite2D" type="Sprite2D" parent="MarginContainer"]
 position = Vector2(144.972, 75.7578)
