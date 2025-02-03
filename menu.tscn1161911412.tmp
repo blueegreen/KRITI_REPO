@@ -1,17 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://b51flugh8uu1u"]
+[gd_scene load_steps=7 format=3 uid="uid://c0dgpk0f14rjm"]
 
 [ext_resource type="Script" uid="uid://b51xt2v5an4nt" path="res://menu.gd" id="1_lti8b"]
 [ext_resource type="Theme" uid="uid://bejgicu8okcwk" path="res://Assets/Theme & Styleboxes/pause_menu_theme.tres" id="2_4hy44"]
-[ext_resource type="Texture2D" uid="uid://bfpfr6nmacts1" path="res://Assets/main_menu.png" id="3_ecwwl"]
 [ext_resource type="FontFile" uid="uid://dkyke77nbtn6y" path="res://Assets/Fonts/BlackBolderDemoRegular.ttf" id="3_ytr4m"]
-[ext_resource type="Shader" path="res://game_logo.gdshader" id="5_kk3ma"]
-[ext_resource type="FontFile" uid="uid://bp55jv88ibl7j" path="res://Assets/Fonts/BlackBolderDemoItalic.ttf" id="5_l48gv"]
+[ext_resource type="VideoStream" uid="uid://bmyiqusnbu5cx" path="res://Assets/tv.ogv" id="4_ytr4m"]
 [ext_resource type="Shader" uid="uid://clog8hga7rney" path="res://pause_menu.gdshader" id="5_ytr4m"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nrnbx"]
-shader = ExtResource("5_kk3ma")
-shader_parameter/influence = 0.5
-shader_parameter/offset = null
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l48gv"]
 shader = ExtResource("5_ytr4m")
@@ -35,19 +28,31 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -376.0
-offset_top = -191.0
-offset_right = -376.0
-offset_bottom = -191.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.40906, 1.44383)
 mouse_filter = 2
 mouse_force_pass_scroll_events = false
 theme = ExtResource("2_4hy44")
 script = ExtResource("1_lti8b")
 next_level = "res://stage_1.tscn"
-settings_level = "\"res://Settiings.tscn\""
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -737.0
+offset_top = -324.0
+offset_right = 726.0
+offset_bottom = 324.0
+stream = ExtResource("4_ytr4m")
+autoplay = true
+expand = true
+loop = true
+
+[node name="Camera2D" type="Camera2D" parent="VideoStreamPlayer"]
+position = Vector2(740, 325)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -57,17 +62,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -576.0
-offset_top = -301.0
+offset_top = -52.0
 offset_right = -286.0
-offset_bottom = -139.0
+offset_bottom = 43.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3.97319, 3.97319)
-
-[node name="Sprite2D" type="Sprite2D" parent="MarginContainer"]
-position = Vector2(144.972, 75.7578)
-scale = Vector2(0.344351, 0.367327)
-texture = ExtResource("3_ecwwl")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -75,41 +75,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-modulate = Color(0.25098, 0.25098, 0.25098, 0)
-layout_mode = 2
-
-[node name="HSeparator4" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-modulate = Color(0.25098, 0.25098, 0.25098, 0)
-layout_mode = 2
-
-[node name="HSeparator5" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-modulate = Color(0.25098, 0.25098, 0.25098, 0)
-layout_mode = 2
-
-[node name="HSeparator6" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-modulate = Color(0.25098, 0.25098, 0.25098, 0)
-layout_mode = 2
-
-[node name="GameLogo" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-material = SubResource("ShaderMaterial_nrnbx")
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme_override_constants/outline_size = 7
-theme_override_fonts/font = ExtResource("5_l48gv")
-theme_override_font_sizes/font_size = 13
-text = "Moleshevik
-Revolution"
-
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-modulate = Color(0.25098, 0.25098, 0.25098, 0)
-layout_mode = 2
-
-[node name="HSeparator3" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-modulate = Color(0.25098, 0.25098, 0.25098, 0)
 layout_mode = 2
 
 [node name="Play" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
@@ -138,10 +103,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -820.0
-offset_top = -472.0
-offset_right = 1198.0
-offset_bottom = 752.0
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 939.0
+offset_bottom = 530.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.76, 0.76)

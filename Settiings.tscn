@@ -1,0 +1,149 @@
+[gd_scene load_steps=7 format=3 uid="uid://c1dfa4np0v4di"]
+
+[ext_resource type="Theme" uid="uid://bejgicu8okcwk" path="res://Assets/Theme & Styleboxes/pause_menu_theme.tres" id="1_f8wjs"]
+[ext_resource type="Script" uid="uid://d2cwqic6iom5e" path="res://settiings.gd" id="2_f8wjs"]
+[ext_resource type="Texture2D" uid="uid://bfpfr6nmacts1" path="res://Assets/main_menu.png" id="3_gxv3p"]
+[ext_resource type="FontFile" uid="uid://dkyke77nbtn6y" path="res://Assets/Fonts/BlackBolderDemoRegular.ttf" id="6_hs4lw"]
+[ext_resource type="Shader" uid="uid://clog8hga7rney" path="res://pause_menu.gdshader" id="7_eyger"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l48gv"]
+shader = ExtResource("7_eyger")
+shader_parameter/resolution = Vector2(320, 180)
+shader_parameter/scan_line_amount = 1.0
+shader_parameter/warp_amount = 0.1
+shader_parameter/noise_amount = 0.03
+shader_parameter/interference_amount = 0.2
+shader_parameter/grille_amount = 0.1
+shader_parameter/grille_size = 1.0
+shader_parameter/vignette_amount = 0.6
+shader_parameter/vignette_intensity = 0.0
+shader_parameter/aberation_amount = 0.5
+shader_parameter/roll_line_amount = 0.3
+shader_parameter/roll_speed = 1.0
+shader_parameter/scan_line_strength = -8.0
+shader_parameter/pixel_strength = -2.0
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+theme = ExtResource("1_f8wjs")
+script = ExtResource("2_f8wjs")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -320.0
+offset_right = -286.0
+offset_bottom = -150.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3.97319, 3.97319)
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer"]
+position = Vector2(144.972, 79.6589)
+scale = Vector2(0.344351, 0.363359)
+texture = ExtResource("3_gxv3p")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Resolution" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/line_spacing = 0
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("6_hs4lw")
+theme_override_font_sizes/font_size = 14
+text = "RESOLUTION"
+
+[node name="ResolutionOptions" type="OptionButton" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 7
+selected = 2
+item_count = 3
+popup/item_0/text = "1920x1080"
+popup/item_0/id = 0
+popup/item_1/text = "1600x900"
+popup/item_1/id = 1
+popup/item_2/text = "1280x720"
+popup/item_2/id = 2
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="Sound" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/line_spacing = 0
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("6_hs4lw")
+theme_override_font_sizes/font_size = 15
+text = "SOUND"
+horizontal_alignment = 1
+
+[node name="VolumeBar" type="HSlider" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="FW" type="OptionButton" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 10
+selected = 0
+item_count = 2
+popup/item_0/text = "WINDOWED"
+popup/item_0/id = 1
+popup/item_1/text = "FULLSCREEN"
+popup/item_1/id = 0
+
+[node name="Mute" type="CheckBox" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 11
+text = "MUTE"
+alignment = 1
+
+[node name="Back" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("6_hs4lw")
+theme_override_font_sizes/font_size = 14
+text = "BACK"
+
+[node name="tv_shader" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_l48gv")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -730.0
+offset_top = -447.0
+offset_right = 1262.0
+offset_bottom = 753.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.76, 0.76)
+mouse_filter = 2
+
+[connection signal="item_selected" from="MarginContainer/HBoxContainer/VBoxContainer/ResolutionOptions" to="." method="_on_resolution_options_item_selected"]
+[connection signal="item_selected" from="MarginContainer/HBoxContainer/VBoxContainer/FW" to="." method="_on_fw_item_selected"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
