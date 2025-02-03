@@ -6,7 +6,7 @@ var _current_state := state.IDLE
 
 @export var max_speed := 300;
 @export var acceleration := 10;
-@export var max_hp := 5;
+@export var max_hp := 35;
 @export var max_dash_cooldown := .8
 @export var gun : Gun
 @export var hitbox : PlayerHitbox
